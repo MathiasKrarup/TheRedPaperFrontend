@@ -1,4 +1,4 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''" *ngIf="currentRoute != '/login'">
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''" *ngIf="currentRoute != '/login' && currentRoute != '/' ">
   <div class="logo-container">
       <button class="logo" (click)="toggleCollapse()">DRA</button>
       <div class="logo-text" *ngIf="collapsed">Den Røde Avis</div>

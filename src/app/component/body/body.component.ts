@@ -32,7 +32,7 @@ export class BodyComponent implements OnInit {
 
   getBodyClass(): string {
     let styleClass = '';
-    if (this.currentRoute == '/login') {
+    if (this.currentRoute == '/login' || this.currentRoute == '/') {
     styleClass = 'reset-this-root';
     }
     if(this.collapsed && this.screenWidth > 768) {
