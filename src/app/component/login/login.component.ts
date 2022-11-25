@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 
 @Component({
@@ -8,7 +9,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+
+
+  constructor() {
+
+  }
   activeClass=false;
 
   ngOnInit(): void {
