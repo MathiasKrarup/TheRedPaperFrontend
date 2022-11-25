@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {style} from "@angular/animations";
+import {NavigationEnd, Router} from "@angular/router";
+import * as events from "events";
 
 @Component({
   selector: 'app-body',
@@ -8,7 +10,19 @@ import {style} from "@angular/animations";
 })
 export class BodyComponent implements OnInit {
 
-  constructor() { }
+  currentRoute: string = "";
+  constructor(private router: Router) {
+    // @ts-ignore
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        // @ts-ignore
+        this.currentRoute = event.url;
+        // @ts-ignore
+        console.log(event.url);
+      }
+    });
+    console.log(this.currentRoute)
+  }
 
   ngOnInit(): void {
   }
@@ -18,6 +32,9 @@ export class BodyComponent implements OnInit {
 
   getBodyClass(): string {
     let styleClass = '';
+    if (this.currentRoute == '/login') {
+    styleClass = 'reset-this-root';
+    }
     if(this.collapsed && this.screenWidth > 768) {
       styleClass = 'body-trimmed';
     } else if (this.collapsed && this.screenWidth <= 768 && this.screenWidth > 0) {

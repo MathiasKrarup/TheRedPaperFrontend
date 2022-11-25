@@ -1,4 +1,4 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''" *ngIf="currentRoute != '/login'">
   <div class="logo-container">
       <button class="logo" (click)="toggleCollapse()">DRA</button>
       <div class="logo-text" *ngIf="collapsed">Den Røde Avis</div>
@@ -18,4 +18,3 @@
     </li>
   </ul>
 </div>
-

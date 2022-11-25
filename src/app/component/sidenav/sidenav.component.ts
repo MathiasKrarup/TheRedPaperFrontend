@@ -1,5 +1,6 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {navbarData} from "./nav-data";
+import {NavigationEnd, Router} from "@angular/router";
 
 interface SideNavToggle {
   screenWidth: number;
@@ -25,7 +26,19 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  currentRoute: string = "";
+  constructor(private router: Router) {
+    // @ts-ignore
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        // @ts-ignore
+        this.currentRoute = event.url;
+        // @ts-ignore
+        console.log(event.url);
+      }
+    });
+    console.log(this.currentRoute)
+  }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
