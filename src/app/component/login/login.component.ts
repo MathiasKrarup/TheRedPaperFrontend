@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Router} from "@angular/router";
+import {HttpService} from "../../../services/http.service";
+// @ts-ignore
+import jwtDecode from "jwt-decode";
 
+
+class Token {
+  role?: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -11,10 +18,12 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(private http: HttpService, private router: Router) {
 
   }
   activeClass=false;
+  password: any;
+  username: any;
 
   ngOnInit(): void {
   }
@@ -25,4 +34,22 @@ export class LoginComponent implements OnInit {
 
 
 
+  async login() {
+    let dto = {
+      username: this.username,
+      password: this.password
+    }
+    this.http.login(dto).then(token => {
+      console.log(token);
+      localStorage.setItem('token', token)
+      let decodedToken = jwtDecode(token) as Token;
+      if (decodedToken.role == 'Admin') {
+        this.router.navigate(['/mainview']);
+      } else if (decodedToken.role == 'Customer') {
+        this.router.navigate(['/createSales']);
+      }else if (decodedToken.role != 'Admin' || 'Customer'){
+        this.router.navigate(['/login'])
+      }
+    })
+  }
 }
