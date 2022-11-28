@@ -9,6 +9,7 @@ import { MainviewComponent } from './component/mainview/mainview.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { CreationsComponent } from './component/creations/creations.component';
 import { BodyComponent } from './component/body/body.component';
+import {FormsModule} from "@angular/forms";
 
 
 const routes: Routes = [{
@@ -29,11 +30,12 @@ const routes: Routes = [{
     CreationsComponent,
     BodyComponent,
   ],
-  imports: [
-    RouterModule.forRoot(routes),
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        RouterModule.forRoot(routes),
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {HttpService} from "../../../services/http.service";
 
 
 @Component({
@@ -11,10 +12,12 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(private http: HttpService) {
 
   }
   activeClass=false;
+  email: any;
+  password: any;
 
   ngOnInit(): void {
   }
@@ -24,5 +27,12 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+  login() {
+    let dto = {
+      email: this.email,
+      password: this.password
+    }
+    var token = this.http.login(dto);
+    console.log(token);
+  }
 }

@@ -11,4 +11,9 @@ export const customAxios = axios.create({
 export class HttpService {
 
   constructor() { }
+
+  async login(dto: any) {
+    const httpResult = await customAxios.post('/login', dto);
+    return httpResult.data;
+  }
 }
