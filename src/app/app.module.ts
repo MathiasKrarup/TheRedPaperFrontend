@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { CreationsComponent } from './component/creations/creations.component';
 import { BodyComponent } from './component/body/body.component';
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "../services/auth.service";
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 
 
 const routes: Routes = [{
@@ -20,6 +22,7 @@ const routes: Routes = [{
 }, {
   path: '', redirectTo: 'login', pathMatch: "full"
 }]
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,7 @@ const routes: Routes = [{
         AppRoutingModule,
         FormsModule
     ],
-  providers: [],
+  providers: [AuthService, AuthService, JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
