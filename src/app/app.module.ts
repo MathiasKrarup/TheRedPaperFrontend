@@ -14,6 +14,7 @@ import {AuthService} from "../services/auth.service";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 
 
+
 const routes: Routes = [{
   path: 'mainview', component: MainviewComponent
 },
@@ -33,12 +34,12 @@ const routes: Routes = [{
     CreationsComponent,
     BodyComponent,
   ],
-    imports: [
-        RouterModule.forRoot(routes),
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule
-    ],
+  imports: [
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+  ],
   providers: [AuthService, AuthService, JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
   bootstrap: [AppComponent]
 })
