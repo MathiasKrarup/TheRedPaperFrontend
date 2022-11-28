@@ -3,29 +3,37 @@
   <form action="#">
       <h1>Create Account</h1>
       <div class="firstandlast">
-        <input type="text" placeholder="Firstname"/>
-        <input type="text" placeholder="Lastname" class="right" />
+        <input [(ngModel)]="firstName" type="text" placeholder="Firstname"
+               [ngModelOptions]="{standalone: true}"/>
+        <input [(ngModel)]="lastName" type="text" placeholder="Lastname" class="right"
+               [ngModelOptions]="{standalone: true}"/>
       </div>
       <div class="usernameandemail">
-        <input type="text" placeholder="Username"/>
-        <input type="email" placeholder="Email" class="right"/>
+        <input [(ngModel)]="username" type="text" placeholder="Username"
+               [ngModelOptions]="{standalone: true}"/>
+        <input [(ngModel)]="email" type="email" placeholder="Email" class="right"
+               [ngModelOptions]="{standalone: true}"/>
       </div>
       <div class="phoneandbirthday">
-       <input type="text" placeholder="Phone number"/>
-        <input type="text" placeholder="Birthday" onfocus="(this.type='date')" class="right"/>
+       <input [(ngModel)]="phoneNumber" type="text" placeholder="Phone number"
+              [ngModelOptions]="{standalone: true}"/>
+        <input [(ngModel)]="birthDay" type="text" placeholder="Birthday" onfocus="(this.type='date')" class="right"
+               [ngModelOptions]="{standalone: true}"/>
       </div>
       <div class="locationandpassword">
-      <input type="text" placeholder="Location"/>
-      <input type="password" placeholder="Password" class="right"/>
+      <input [(ngModel)]="location" type="text" placeholder="Location"
+             [ngModelOptions]="{standalone: true}"/>
+      <input [(ngModel)]="password" type="password" placeholder="Password" class="right"
+             [ngModelOptions]="{standalone: true}"/>
     </div>
-      <button>Sign Up</button>
+      <button (click)="createUser()">Sign Up </button>
     </form>
   </div>
   <div class="form-container sign-in-container">
     <form>
       <h1>Sign in</h1>
       <input [(ngModel)]="username" type="text" placeholder="Username" [ngModelOptions]="{standalone: true}" />
-      <input [(ngModel)]="password" type="password" placeholder="Password" [ngModelOptions]="{standalone: true}" />
+      <input [(ngModel)]="password" type="password" placeholder="Password" [ngModelOptions]="{standalone:true}" />
       <button (click)="login()">Sign In</button>
     </form>
   </div>

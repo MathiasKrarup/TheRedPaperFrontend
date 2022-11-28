@@ -20,4 +20,9 @@ export class HttpService {
     const httpResult = await customAxios.post('/Auth/login', dto);
     return httpResult.data;
   }
+
+  async createUser(dto: { firstName: string; lastName: string; birthDay: Date; password: string; phoneNumber: number; location: string; email: string; username: string }) {
+    const httpResult = await customAxios.post<any>('/Auth/RegisterUser', dto)
+    return httpResult.data;
+  }
 }

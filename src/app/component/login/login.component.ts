@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {HttpService} from "../../../services/http.service";
 // @ts-ignore
 import jwtDecode from "jwt-decode";
+import {NgToastService} from "ng-angular-popup";
 
 
 class Token {
@@ -18,12 +19,19 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: HttpService, private router: Router, private toast : NgToastService) {
 
   }
   activeClass=false;
   password: any;
   username: any;
+  firstName: any;
+  lastName: any;
+  email: any;
+  phoneNumber: any;
+  birthDay: any;
+  location: any;
+
 
   ngOnInit(): void {
   }
@@ -51,5 +59,20 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/login'])
       }
     })
+  }
+
+  async createUser() {
+    let dto = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      username: this.username,
+      password: this.password,
+      birthDay: this.birthDay,
+      email: this.email,
+      phoneNumber: this.phoneNumber,
+      location: this.location
+    }
+    const result = await this.http.createUser(dto);
+    console.log(result)
   }
 }
