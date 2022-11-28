@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {HttpService} from "../services/http.service";
 
 interface SideNavToggle {
   screenWidth: number;
@@ -25,6 +26,6 @@ export class AppComponent {
     this.isSideNavCollapsed = data.collapsed;
   }
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private http: HttpService) {
   }
 }

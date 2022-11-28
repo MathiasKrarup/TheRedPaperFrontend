@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
 
   }
   activeClass=false;
-  email: any;
   password: any;
+  username: any;
 
   ngOnInit(): void {
   }
@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login() {
+  async login() {
     let dto = {
-      email: this.email,
+      username: this.username,
       password: this.password
     }
-    var token = this.http.login(dto);
-    console.log(token);
+    var token = await this.http.login(dto);
+    localStorage.setItem('token', token)
   }
 }
