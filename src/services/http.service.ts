@@ -35,4 +35,9 @@ export class HttpService {
     const httpResult = await customAxios.post<any>('/Auth/RegisterUser', dto)
     return httpResult.data;
   }
+
+  async createProduct(dto: { price: any; imageUrl: any; description: any; productName: any }): Promise<any> {
+    const httpResult = await customAxios.post<any>('/Product', dto)
+    return httpResult.data;
+  }
 }

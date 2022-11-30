@@ -46,8 +46,7 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password
     }
-    this.http.login(dto).then(token => {
-      console.log(token);
+    var token = await this.http.login(dto)
       localStorage.setItem('token', token)
       let decodedToken = jwtDecode(token) as Token;
       if (decodedToken.role == 'Admin') {
@@ -57,7 +56,6 @@ export class LoginComponent implements OnInit {
       }else if (decodedToken.role != 'Admin' || 'Customer'){
         this.router.navigate(['/login'])
       }
-    })
   }
 
   async createUser() {

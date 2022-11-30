@@ -23,14 +23,19 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="form_productName">Name ur ad*</label>
-                      <input [(ngModel)]="productName" id="form_productName" type="text" name="productName" class="form-control" placeholder="Please enter the name of the product *" required="required" data-error="A name of the product is required.">
+                      <input [(ngModel)]="productName" id="form_productName" type="text" name="productName"
+                             class="form-control" placeholder="Please enter the name of the product *" required="required"
+                             data-error="A name of the product is required."
+                             [ngModelOptions]="{standalone: true}">
 
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="form_price">Price*</label>
-                      <input [(ngModel)]="price" id="form_price" type ="number" name="price" class="form-control" placeholder=0.00 required="required" data-error="A valid price is required.">
+                      <input [(ngModel)]="price" id="form_price" type ="number" name="price" class="form-control"
+                             placeholder=0.00 required="required" data-error="A valid price is required."
+                             [ngModelOptions]="{standalone: true}">
                     </div>
                   </div>
                 </div>
@@ -38,7 +43,9 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="condition">Product condition *</label>
-                      <select [(ngModel)]="condition" id="condition" type="number" name="condition" class="form-control" required="required" data-error="A valid length is required.">
+                      <select [(ngModel)]="condition" id="condition" type="number" name="condition" class="form-control"
+                              required="required" data-error="A valid length is required."
+                              [ngModelOptions]="{standalone: true}">
                         <option [value]="conditions.Fremragende">Fremragende</option>
                         <option [value]="conditions.God">God</option>
                         <option [value]="conditions.Brugt">Brugt</option>
@@ -49,7 +56,9 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="form_url">Image-url *</label>
-                        <input [(ngModel)]="imageUrl" id="form_url" type="text" name="url" class="form-control" placeholder="Please enter an url to create an image *" required="required" data-error="An image-url is required.">
+                        <input [(ngModel)]="imageUrl" id="form_url" type="text" name="url" class="form-control"
+                               placeholder="Please enter an url to create an image *" required="required"
+                               data-error="An image-url is required." [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
 
@@ -58,7 +67,9 @@
                   <div class="col-md-6">
                   <div class="form-group">
                     <label for="form_categories">Category *</label>
-                    <select name="" [(ngModel)]="currentCategory" id="form_categories" type="text" class="form-control" data-error="A valid category is required.">
+                    <select name="category" [(ngModel)]="currentCategory" id="form_categories" type="text" class="form-control"
+                            data-error="A valid category is required."
+                            [ngModelOptions]="{standalone: true}">
                       <option *ngFor="let item of categorylist" [value]="item">
                         {{item.categoryName}} </option>
                     </select>
@@ -67,9 +78,10 @@
                   <div class="col-md-6">
                   <div class="form-group">
                     <label for="form_subCategories">Sub Category *</label>
-                    <span *ngIf="currentCategory!=''"> <select (change)="outputCategory()" id="form_subCategories" type="text"  class="form-control" required="required" data-error="A valid subCategory is required." >
+                    <span *ngIf="currentCategory!=''"> <select id="form_subCategories" type="text"  class="form-control" required="required" data-error="A valid subCategory is required." >
 
-                        <option [(ngModel)]="currentSubcategory" *ngFor="let item of subCategorylist" [value]="item.subcatetgoryId">
+                        <option name="subcategory"  *ngFor="let item of subCategorylist"
+                                [value]="item.subcatetgoryId" >
                         {{item.subCategoryName}} </option>
                     </select>
                       </span>
@@ -83,8 +95,10 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="form_description">Description *</label>
-                      <textarea [(ngModel)]="description" id="form_description" type="text" name="description" class="form-control" placeholder="Write a description here." rows="4" required="required" data-error="Please, leave us a description."></textarea
-                      >
+                      <textarea [(ngModel)]="description" id="form_description" type="text" name="description"
+                                class="form-control" placeholder="Write a description here." rows="4" required="required"
+                                data-error="Please, leave us a description."
+                                [ngModelOptions]="{standalone: true}"></textarea>
                     </div>
 
                   </div>

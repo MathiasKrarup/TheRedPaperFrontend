@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ConditionType} from "./Condition.types";
 import {HttpService} from "../../../services/http.service";
 import {FormControl} from "@angular/forms";
+import {Router} from "@angular/router";
+import jwtDecode from "jwt-decode";
+import {Token} from "../../../Interfaces/Token";
+
 
 @Component({
   selector: 'app-create-product',
@@ -11,17 +15,18 @@ import {FormControl} from "@angular/forms";
 export class CreateProductComponent implements OnInit {
   productName: any = ""
   price: any = 0
-  description: any;
-  imageUrl: any;
-  width: any;
-  length: any;
+  description: any = ""
+  imageUrl: any = ""
 
-  categorylist : any[] = []
-  subCategorylist : any[] = [{
+  currentCategory: any
+  currentSubcategory: any
+
+  categorylist: any[] = []
+  subCategorylist: any[] = [{
     subcatetgoryId: 1,
     subCategoryName: "hey"
   }, {
-    subcatetgoryId:  2,
+    subcatetgoryId: 2,
     subCategoryName: "sdjkfhgdsf"
   }
   ]
@@ -30,10 +35,10 @@ export class CreateProductComponent implements OnInit {
   condition: any = ConditionType
   private infoForm: any;
 
-  constructor(private http : HttpService) {
+  constructor(private http: HttpService, private router: Router) {
   }
 
- async ngOnInit() {
+  async ngOnInit() {
     this.categorylist = await this.http.getCategories();
 
   }
@@ -44,15 +49,32 @@ export class CreateProductComponent implements OnInit {
 
   close() {
 
+
   }
 
-  createProduct() {
 
+  async createProduct() {
+    let token = localStorage.getItem('token');
+    if (!token)
+      return console.log("There was no matching token found")
+
+    let decodedToken = jwtDecode(token) as Token;
+    let dto = {
+      Id: decodedToken.Id,
+      productName: this.productName,
+      imageUrl: this.imageUrl,
+      price: this.price,
+      description: this.description
+    }
+    const result = await this.http.createProduct(dto);
+    console.log(result)
+    await this.router.navigateByUrl('/mainview');
   }
 
   public get conditions(): typeof ConditionType {
     return ConditionType;
   }
+
 
 
   /*
@@ -64,14 +86,7 @@ export class CreateProductComponent implements OnInit {
       this.condition = fourthCond;
     }
    */
-  currentCategory: any;
-  currentSubcategory: any;
 
-  disabled() {
-    this.currentSubcategory = "";
-  }
 
-  outputCategory() {
-    console.log(this.currentCategory)
-  }
+
 }
