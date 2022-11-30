@@ -16,6 +16,11 @@ export class HttpService {
 
   constructor() { }
 
+  async getCategories() {
+    const httpResponse = await customAxios.get<any>('/Category');
+    return httpResponse.data;
+  }
+
   async login(dto: any) {
     const httpResult = await customAxios.post('/Auth/login', dto);
     return httpResult.data;
