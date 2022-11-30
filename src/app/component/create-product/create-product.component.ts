@@ -17,7 +17,14 @@ export class CreateProductComponent implements OnInit {
   length: any;
 
   categorylist : any[] = []
-  subCategorylist : any[] = []
+  subCategorylist : any[] = [{
+    subcatetgoryId: 1,
+    subCategoryName: "hey"
+  }, {
+    subcatetgoryId:  2,
+    subCategoryName: "sdjkfhgdsf"
+  }
+  ]
 
 
   condition: any = ConditionType
@@ -57,4 +64,14 @@ export class CreateProductComponent implements OnInit {
       this.condition = fourthCond;
     }
    */
+  currentCategory: any;
+  currentSubcategory: any;
+
+  disabled() {
+    this.currentSubcategory = "";
+  }
+
+  outputCategory() {
+    console.log(this.currentCategory)
+  }
 }

@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {HttpService} from "../../../services/http.service";
 // @ts-ignore
 import jwtDecode from "jwt-decode";
-import {NgToastService} from "ng-angular-popup";
 
 
 class Token {
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private http: HttpService, private router: Router, private toast : NgToastService) {
+  constructor(private http: HttpService, private router: Router) {
 
   }
   activeClass=false;
