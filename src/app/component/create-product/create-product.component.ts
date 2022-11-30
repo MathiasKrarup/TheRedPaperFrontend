@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConditionType} from "./Condition.types";
 import {HttpService} from "../../../services/http.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-create-product',
@@ -16,15 +17,22 @@ export class CreateProductComponent implements OnInit {
   length: any;
 
   categorylist : any[] = []
+  subCategorylist : any[] = []
 
 
   condition: any = ConditionType
+  private infoForm: any;
 
   constructor(private http : HttpService) {
   }
 
  async ngOnInit() {
     this.categorylist = await this.http.getCategories();
+
+  }
+
+  get category(): FormControl {
+    return this.infoForm.get('category');
   }
 
   close() {

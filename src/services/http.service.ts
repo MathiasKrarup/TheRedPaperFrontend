@@ -21,6 +21,11 @@ export class HttpService {
     return httpResponse.data;
   }
 
+  async getSubcategories (id: number) {
+    const httpResponse = await customAxios.get<any>('/SubCategory/'+id)
+    return httpResponse.data;
+  }
+
   async login(dto: any) {
     const httpResult = await customAxios.post('/Auth/login', dto);
     return httpResult.data;
