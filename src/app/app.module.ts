@@ -20,7 +20,8 @@ const routes: Routes = [{
 },
   {
   path: 'login', component: LoginComponent
-}, {
+},
+  {path: 'createSales', component: CreationsComponent}, {
   path: '', redirectTo: 'login', pathMatch: "full"
 }]
 
