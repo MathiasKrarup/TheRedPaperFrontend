@@ -46,6 +46,7 @@
                       <select [(ngModel)]="condition" id="condition" type="number" name="condition" class="form-control"
                               required="required" data-error="A valid length is required."
                               [ngModelOptions]="{standalone: true}">
+                        <option [value]="conditions.Ubrugt">Ubrugt</option>
                         <option [value]="conditions.Fremragende">Fremragende</option>
                         <option [value]="conditions.God">God</option>
                         <option [value]="conditions.Brugt">Brugt</option>
@@ -66,26 +67,13 @@
                 <div class="row">
                   <div class="col-md-6">
                   <div class="form-group">
-                    <label for="form_categories">Category *</label>
-                    <select name="category" [(ngModel)]="currentCategory" id="form_categories" type="text" class="form-control"
-                            data-error="A valid category is required."
-                            [ngModelOptions]="{standalone: true}">
-                      <option *ngFor="let item of categorylist" [value]="item">
-                        {{item.categoryName}} </option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                  <div class="form-group">
                     <label for="form_subCategories">Sub Category *</label>
-                    <span *ngIf="currentCategory!=''"> <select id="form_subCategories" type="text"  class="form-control" required="required" data-error="A valid subCategory is required." >
-
-                        <option name="subcategory"  *ngFor="let item of subCategorylist"
-                                [value]="item.subcatetgoryId" >
-                        {{item.subCategoryName}} </option>
+                    <select name="category" [(ngModel)]="currentsubCategory" id="form_subCategories" type="text" class="form-control"
+                            data-error="A valid subcategory is required."
+                            [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let item of subcategorylist" [value]="item.id">
+                        {{item.subName}} </option>
                     </select>
-                      </span>
-
                       </div>
                     </div>
                   </div>

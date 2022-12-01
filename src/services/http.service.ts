@@ -21,8 +21,8 @@ export class HttpService {
     return httpResponse.data;
   }
 
-  async getSubcategories (id: number) {
-    const httpResponse = await customAxios.get<any>('/SubCategory/'+id)
+  async getSubcategories () {
+    const httpResponse = await customAxios.get<any>('/SubCategory/GetAllSubs')
     return httpResponse.data;
   }
 
@@ -36,7 +36,7 @@ export class HttpService {
     return httpResult.data;
   }
 
-  async createProduct(dto: { userId: any, price: any; imageUrl: any; description: any; productName: any; condition: any; }): Promise<any> {
+  async createProduct(dto: { subCategoryId:any; userId: any, price: any; imageUrl: any; description: any; productName: any; productCondition: any; }): Promise<any> {
     const httpResult = await customAxios.post<any>('/Product', dto)
     return httpResult.data;
   }

@@ -1,7 +1,8 @@
 export enum ConditionType {
-  Fremragende = 0,
-  God = 1,
-  Brugt = 2,
-  Nedslidt = 3
+  Ubrugt = 0,
+  Fremragende = 1,
+  God = 2,
+  Brugt = 3,
+  Nedslidt = 4
 }
 

@@ -18,30 +18,25 @@ export class CreateProductComponent implements OnInit {
   description: any = ""
   imageUrl: any = ""
 
-  currentCategory: any
-  currentSubcategory: any
 
   categorylist: any[] = []
-  subCategorylist: any[] = [{
-    subcatetgoryId: 1,
-    subCategoryName: "hey"
-  }, {
-    subcatetgoryId: 2,
-    subCategoryName: "sdjkfhgdsf"
-  }
-  ]
 
+  subcategorylist: any[] = []
+
+  currentsubCategory: any
+
+  id: any
 
   condition: any = ConditionType
   private infoForm: any;
 
   constructor(private http: HttpService, private router: Router) {
   }
-
   async ngOnInit() {
     this.categorylist = await this.http.getCategories();
-
+    this.subcategorylist = await this.http.getSubcategories();
   }
+
 
   get category(): FormControl {
     return this.infoForm.get('category');
@@ -61,13 +56,15 @@ export class CreateProductComponent implements OnInit {
 
     let decodedToken = jwtDecode(token) as Token;
 
+
       let dto = {
         userId: decodedToken.id,
         productName: this.productName,
         imageUrl: this.imageUrl,
         price: this.price,
+        productCondition: this.condition,
         description: this.description,
-        condition: this.condition
+        subCategoryId: this.currentsubCategory
       }
       const result = await this.http.createProduct(dto);
       console.log(result)
