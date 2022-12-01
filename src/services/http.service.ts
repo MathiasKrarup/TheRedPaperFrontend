@@ -36,7 +36,7 @@ export class HttpService {
     return httpResult.data;
   }
 
-  async createProduct(dto: { price: any; imageUrl: any; description: any; productName: any }): Promise<any> {
+  async createProduct(dto: { id: any, price: any; imageUrl: any; description: any; productName: any; condition: any; }): Promise<any> {
     const httpResult = await customAxios.post<any>('/Product', dto)
     return httpResult.data;
   }

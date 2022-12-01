@@ -1,3 +1,5 @@
 export interface Token {
-  Id:number
+  id:number
+  role: string
+  username: string
 }

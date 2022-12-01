@@ -55,20 +55,24 @@ export class CreateProductComponent implements OnInit {
 
   async createProduct() {
     let token = localStorage.getItem('token');
+    console.log(token)
     if (!token)
       return console.log("There was no matching token found")
 
     let decodedToken = jwtDecode(token) as Token;
-    let dto = {
-      Id: decodedToken.Id,
-      productName: this.productName,
-      imageUrl: this.imageUrl,
-      price: this.price,
-      description: this.description
+    if (decodedToken.id == 1) {
+      let dto = {
+        id: decodedToken.id,
+        productName: this.productName,
+        imageUrl: this.imageUrl,
+        price: this.price,
+        description: this.description,
+        condition: this.condition
+      }
+      const result = await this.http.createProduct(dto);
+      console.log(result)
+      await this.router.navigateByUrl('/mainview');
     }
-    const result = await this.http.createProduct(dto);
-    console.log(result)
-    await this.router.navigateByUrl('/mainview');
   }
 
   public get conditions(): typeof ConditionType {
