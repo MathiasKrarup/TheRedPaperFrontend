@@ -60,9 +60,9 @@ export class CreateProductComponent implements OnInit {
       return console.log("There was no matching token found")
 
     let decodedToken = jwtDecode(token) as Token;
-    if (decodedToken.id == 1) {
+
       let dto = {
-        id: decodedToken.id,
+        userId: decodedToken.id,
         productName: this.productName,
         imageUrl: this.imageUrl,
         price: this.price,
@@ -73,7 +73,7 @@ export class CreateProductComponent implements OnInit {
       console.log(result)
       await this.router.navigateByUrl('/mainview');
     }
-  }
+
 
   public get conditions(): typeof ConditionType {
     return ConditionType;

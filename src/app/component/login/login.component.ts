@@ -7,6 +7,7 @@ import jwtDecode from "jwt-decode";
 
 class Token {
   role?: string;
+  id?: string;
 }
 
 @Component({
