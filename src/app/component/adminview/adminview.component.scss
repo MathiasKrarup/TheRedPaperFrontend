@@ -1,5 +1,23 @@
 table {
-  width: 100%;
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+
+.mat-form-field {
+  border-bottom: solid black;
+  width: 80%;
+  padding: 10px;
+  margin-left: 195px;
+}
+
+.mat-input-element {
+  width: 80%;
+  padding: 10px;
+}
+
+.mat-table {
+  overflow-x: scroll;
 }
 
 .mat-mdc-form-field {
@@ -9,4 +27,50 @@ table {
 
 td, th {
   width: 25%;
+}
+
+.mat-paginator {
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+
+
+.mat-column-id {
+  width: 5%;
+}
+
+.mat-column-firstName {
+  width: 20%;
+  padding: 10px;
+  margin: auto;
+}
+
+.mat-column-lastName {
+  width: 20%;
+}
+
+.mat-column-username {
+  width: 20%;
+  padding: 10px;
+  margin: auto;
+}
+
+.mat-column-email {
+  width: 20%;
+  padding: 10px;
+  margin: auto;
+
+}
+
+.mat-raised-button {
+  background-color: transparent;
+}
+
+.fa-pen {
+  color: green;
+}
+
+.fa-trash {
+  color: red;
 }

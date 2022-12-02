@@ -11,9 +11,9 @@ export const navbarData = [
     label: 'Create sales ad'
   },
 
-  { routeLink: 'adminview',
+  {
+    routeLink: 'adminview',
     icon: 'fas fa-list',
-    label: 'List of Users'
   }
 ];
 

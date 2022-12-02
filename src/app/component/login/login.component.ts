@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {HttpService} from "../../../services/http.service";
+import {AuthService} from "../../../services/auth.service";
 // @ts-ignore
 import jwtDecode from "jwt-decode";
 
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: AuthService, private router: Router) {
 
   }
   activeClass=false;
