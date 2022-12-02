@@ -24,7 +24,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { CreateProductComponent } from './component/create-product/create-product.component';
 import {MatButtonModule} from "@angular/material/button";
-import { ProductInfoComponent } from './component/product-info/product-info.component';
 import { ProductListComponent } from './component/product-list/product-list.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatGridListModule} from "@angular/material/grid-list";
@@ -55,7 +54,6 @@ const routes: Routes = [
     BodyComponent,
     AdminviewComponent,
     CreateProductComponent,
-    ProductInfoComponent,
     ProductListComponent
   ],
   imports: [
