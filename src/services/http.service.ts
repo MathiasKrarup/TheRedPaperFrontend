@@ -13,11 +13,13 @@ export const customAxios = axios.create({
   providedIn: 'root'
 })
 export class HttpService {
+users: any[] = [];
 
   constructor() { }
 
   async getUsers() {
     const httpResponse = await customAxios.get<any>('/User');
+    this.users = httpResponse.data;
     return httpResponse.data;
   }
 

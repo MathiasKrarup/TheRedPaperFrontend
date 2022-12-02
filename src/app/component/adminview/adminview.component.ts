@@ -1,8 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpService} from "../../../services/http.service";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatDialog} from "@angular/material/dialog";
+import {MatTableModule} from "@angular/material/table";
+import { DataSource } from '@angular/cdk/table';
 
 
 @Component({
@@ -11,20 +14,23 @@ import {MatPaginator} from "@angular/material/paginator";
   styleUrls: ['./adminview.component.scss']
 })
 export class AdminviewComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'assignedRole', 'firstName', 'lastName', 'username', 'birthDay', 'email', 'phoneNumber', 'location'];
-  dataSource!: MatTableDataSource<Users>
-  userList : any[] = []
+  displayedColumns: string[] = ['id', 'assignedRole', 'firstName', 'lastName', 'username', 'hash', 'salt', 'email', 'phoneNumber', 'location', 'products'];
+  dataSource: MatTableDataSource<Users>;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private http : HttpService) { }
+  @ViewChild(MatPaginator) paginator : MatPaginator;
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private http: HttpService) {
+  }
 
   async ngOnInit() {
-    const users = this.userList = await this.http.getUsers();
+    const users = await this.http.getUsers();
     this.dataSource = new MatTableDataSource(users);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    console.log(this.dataSource)
   }
 
   applyFilter(event: Event) {
@@ -39,13 +45,16 @@ export class AdminviewComponent implements OnInit {
 
 // Add to interfaces when product is pushed
 export interface Users {
-  id: number,
-  assignedRole: any,
-  firstname: string,
+  id?: number,
+  assignedRole?: number,
+  firstName: string,
   lastName: string,
   username: string,
-  birthDay: any,
+  hash?: string,
+  salt?: string,
+  birthDay?: string,
   email: string,
   phoneNumber: number,
-  location: string
+  location: string,
+  products?: string
 }
