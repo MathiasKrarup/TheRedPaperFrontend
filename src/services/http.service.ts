@@ -40,4 +40,9 @@ export class HttpService {
     const httpResult = await customAxios.post<any>('/Product', dto)
     return httpResult.data;
   }
+
+  async getConditions(){
+    const httpResponse = await customAxios.get<any>('/Condition')
+    return httpResponse.data;
+  }
 }

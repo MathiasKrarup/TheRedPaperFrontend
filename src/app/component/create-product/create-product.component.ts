@@ -21,13 +21,16 @@ export class CreateProductComponent implements OnInit {
 
   categorylist: any[] = []
 
+  conditionlist: any [] = []
+
+
   subcategorylist: any[] = []
 
   currentsubCategory: any
 
   id: any
 
-  condition: any = ConditionType
+  condition: any
   private infoForm: any;
 
   constructor(private http: HttpService, private router: Router) {
@@ -35,6 +38,7 @@ export class CreateProductComponent implements OnInit {
   async ngOnInit() {
     this.categorylist = await this.http.getCategories();
     this.subcategorylist = await this.http.getSubcategories();
+    this.conditionlist = await this.http.getConditions();
   }
 
 
@@ -64,17 +68,15 @@ export class CreateProductComponent implements OnInit {
         price: this.price,
         productCondition: this.condition,
         description: this.description,
-        subCategoryId: this.currentsubCategory
+        subCategoryId: this.currentsubCategory,
+        productConditionId: this.condition,
       }
+      console.log(this.condition);
       const result = await this.http.createProduct(dto);
       console.log(result)
       await this.router.navigateByUrl('/mainview');
     }
 
-
-  public get conditions(): typeof ConditionType {
-    return ConditionType;
-  }
 
 
 
