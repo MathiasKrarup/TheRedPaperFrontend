@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {style} from "@angular/animations";
 import {NavigationEnd, Router} from "@angular/router";
 import * as events from "events";
+import {MatTable, MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-body',

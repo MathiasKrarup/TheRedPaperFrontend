@@ -13,8 +13,13 @@ export const customAxios = axios.create({
   providedIn: 'root'
 })
 export class HttpService {
+users: any[] = [];
 
   constructor() { }
+
+  async getUsers() {
+    const httpResponse = await customAxios.get<any>('/User');
+    this.users = httpResponse.data;
 
   async getCategories() {
     const httpResponse = await customAxios.get<any>('/Category');
@@ -35,6 +40,8 @@ export class HttpService {
     const httpResult = await customAxios.post<any>('/Auth/RegisterUser', dto)
     return httpResult.data;
   }
+
+
 
   async createProduct(dto: { subCategoryId:any; userId: any, price: any; imageUrl: any; description: any; productName: any; productCondition: any; }): Promise<any> {
     const httpResult = await customAxios.post<any>('/Product', dto)
