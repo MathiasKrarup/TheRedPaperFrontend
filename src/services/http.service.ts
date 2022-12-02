@@ -20,6 +20,14 @@ users: any[] = [];
   async getUsers() {
     const httpResponse = await customAxios.get<any>('/User');
     this.users = httpResponse.data;
+
+  async getCategories() {
+    const httpResponse = await customAxios.get<any>('/Category');
+    return httpResponse.data;
+  }
+
+  async getSubcategories () {
+    const httpResponse = await customAxios.get<any>('/SubCategory/GetAllSubs')
     return httpResponse.data;
   }
 
@@ -34,4 +42,14 @@ users: any[] = [];
   }
 
 
+
+  async createProduct(dto: { subCategoryId:any; userId: any, price: any; imageUrl: any; description: any; productName: any; productCondition: any; }): Promise<any> {
+    const httpResult = await customAxios.post<any>('/Product', dto)
+    return httpResult.data;
+  }
+
+  async getConditions(){
+    const httpResponse = await customAxios.get<any>('/Condition')
+    return httpResponse.data;
+  }
 }

@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from "@angular/router";
 import { MainviewComponent } from './component/mainview/mainview.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
-import { CreationsComponent } from './component/creations/creations.component';
 import { BodyComponent } from './component/body/body.component';
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
@@ -22,6 +21,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialog} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+import { CreateProductComponent } from './component/create-product/create-product.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 const routes: Routes = [{
@@ -43,9 +45,9 @@ const routes: Routes = [{
     LoginComponent,
     MainviewComponent,
     SidenavComponent,
-    CreationsComponent,
     BodyComponent,
     AdminviewComponent,
+    CreateProductComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -61,7 +63,7 @@ const routes: Routes = [{
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-
+    MatButtonModule
   ],
 
   schemas: [NO_ERRORS_SCHEMA],
