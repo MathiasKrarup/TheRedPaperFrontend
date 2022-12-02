@@ -8,19 +8,16 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {AdminviewComponent} from "./component/adminview/adminview.component";
-
-const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'mainview', component: MainviewComponent},
-  {path: 'adminview', component: AdminviewComponent}
 import {CreateProductComponent} from "./component/create-product/create-product.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'mainview', component: MainviewComponent,
-  {path: 'createSales', component: CreateProductComponent}
-  ];
+  {path: 'mainview', component: MainviewComponent},
+  {path: 'createSales', component: CreateProductComponent},
+  {path: 'adminview', component: AdminviewComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), MatTableModule, MatPaginatorModule, MatSortModule],

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import * as http from "http";
 
 export const customAxios = axios.create({
   baseURL: 'https://localhost:7175',
@@ -20,6 +21,8 @@ users: any[] = [];
   async getUsers() {
     const httpResponse = await customAxios.get<any>('/User');
     this.users = httpResponse.data;
+    return httpResponse.data;
+  }
 
   async getCategories() {
     const httpResponse = await customAxios.get<any>('/Category');

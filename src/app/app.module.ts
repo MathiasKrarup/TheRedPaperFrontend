@@ -32,7 +32,7 @@ const routes: Routes = [{
   {
   path: 'login', component: LoginComponent
 },
-  {path: 'createSales', component: CreationsComponent},
+  {path: 'createSales', component: CreateProductComponent},
 
   {path: 'adminview', component: AdminviewComponent},
 
