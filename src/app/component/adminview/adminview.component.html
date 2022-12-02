@@ -7,70 +7,40 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=""> id </th>
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="assignedRole">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> assignedRole </th>
-      <td mat-cell *matCellDef="let row"> </td>
-    </ng-container>
-
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> firstName </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=""> firstName </th>
       <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> lastName </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=""> lastName </th>
       <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=""> username </th>
       <td mat-cell *matCellDef="let row"> {{row.username}} </td>
-    </ng-container>
-    <!-- ID Column -->
-    <ng-container matColumnDef="hash">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> hash </th>
-      <td mat-cell *matCellDef="let row"> </td>
-    </ng-container>
-
-    <ng-container matColumnDef="salt">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> salt </th>
-      <td mat-cell *matCellDef="let row"> </td>
-    </ng-container>
-
-    <ng-container matColumnDef="birthDay">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> birthDay </th>
-      <td mat-cell *matCellDef="let row"> </td>
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=""> email </th>
       <td mat-cell *matCellDef="let row"> {{row.email}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="phoneNumber">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> phoneNumber </th>
-      <td mat-cell *matCellDef="let row"> {{row.phoneNumber}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="location">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> location </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header=""> location </th>
       <td mat-cell *matCellDef="let row"> {{row.location}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="products">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> products </th>
-      <td mat-cell *matCellDef="let row"> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
+    <tr class="mat-row">
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
   </table>
