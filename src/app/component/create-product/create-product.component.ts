@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ConditionType} from "./Condition.types";
-import {HttpService} from "../../../services/http.service";
+import {AuthService} from "../../../services/auth.service";
 import {FormControl} from "@angular/forms";
 import {Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
-import {Token} from "../../../Interfaces/Token";
+import {Token} from "../../../Interfaces/token";
+import {ProductService} from "../../../services/product.service";
 
 
 @Component({
@@ -33,12 +34,12 @@ export class CreateProductComponent implements OnInit {
   condition: any
   private infoForm: any;
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: AuthService, private router: Router, private service: ProductService) {
   }
   async ngOnInit() {
-    this.categorylist = await this.http.getCategories();
-    this.subcategorylist = await this.http.getSubcategories();
-    this.conditionlist = await this.http.getConditions();
+    this.categorylist = await this.service.getCategories();
+    this.subcategorylist = await this.service.getSubcategories();
+    this.conditionlist = await this.service.getConditions();
   }
 
 
@@ -72,7 +73,7 @@ export class CreateProductComponent implements OnInit {
         productConditionId: this.condition,
       }
       console.log(this.condition);
-      const result = await this.http.createProduct(dto);
+      const result = await this.service.createProduct(dto);
       console.log(result)
       await this.router.navigateByUrl('/mainview');
     }

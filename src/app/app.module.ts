@@ -1,4 +1,4 @@
-import {InjectionToken, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -9,8 +9,6 @@ import { MainviewComponent } from './component/mainview/mainview.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { BodyComponent } from './component/body/body.component';
 import {FormsModule} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {AdminviewComponent} from "./component/adminview/adminview.component";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -19,7 +17,6 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {MatDialog} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { CreateProductComponent } from './component/create-product/create-product.component';
@@ -66,10 +63,8 @@ const routes: Routes = [{
     MatButtonModule
   ],
 
-  schemas: [NO_ERRORS_SCHEMA],
-
   exports: [MatTableModule],
-  providers: [AuthService, AuthService, JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

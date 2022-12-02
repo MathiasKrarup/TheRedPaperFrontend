@@ -1,8 +1,12 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {HttpService} from "../../../services/http.service";
+import {AuthService} from "../../../services/auth.service";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {userService} from "../../../services/user.service";
+import {Users} from "../../../Interfaces/user";
+import jwtDecode from "jwt-decode";
+import {Token} from "../../../Interfaces/token";
 
 
 @Component({
@@ -11,23 +15,26 @@ import {MatPaginator} from "@angular/material/paginator";
   styleUrls: ['./adminview.component.scss']
 })
 export class AdminviewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'username', 'email', 'location',];
+  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'updateButton', 'deleteButton' ];
   dataSource: MatTableDataSource<Users>;
+
+  userList : any [] = []
 
 
   @ViewChild(MatPaginator) paginator : MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpService) {
+  constructor(private service: userService) {
   }
 
   async ngAfterViewInit() {
-    const users: Users[] = await this.http.getUsers();
-    this.dataSource = new MatTableDataSource(users);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+      const users: Users[] = await this.service.getUsers();
+      this.dataSource = new MatTableDataSource(users);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -37,14 +44,12 @@ export class AdminviewComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  async deleteUser(row: any) {
+    if (confirm('Are you sure, that you want to delete ' + row.firstName + ' ' + row.lastName)) {
+      const user = await this.service.deleteUser(row.id);
+      this.dataSource.data = this.dataSource.data.filter(u => u.id != user.id);
+    }
+  }
 }
 
-// Add to interfaces when product is pushed
-export interface Users {
-  id?: number,
-  firstName: string,
-  lastName: string,
-  username: string,
-  email: string,
-  location: string,
-}

@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-@Injectable({ providedIn: 'root' })
+import axios from 'axios';
+import * as http from "http";
+
+export const customAxios = axios.create({
+  baseURL: 'https://localhost:7175',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+})
+
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
+  constructor() { }
 
+  async login(dto: any) {
+    const httpResult = await customAxios.post('/Auth/login', dto);
+    return httpResult.data;
+  }
 
-
-  constructor(public jwtHelper: JwtHelperService) {}
-
-
-  public isAuthenticated(): boolean {
-    console.log (localStorage['token']);
-    const token = localStorage.getItem('token');
-    // Check whether the token is expired and return
-    // true or false
-    // @ts-ignore
-    return !this.jwtHelper.isTokenExpired(token);
+  async createUser(dto: { firstName: string; lastName: string; birthDay: Date; password: string; phoneNumber: number; location: string; email: string; username: string }) {
+    const httpResult = await customAxios.post<any>('/Auth/RegisterUser', dto)
+    return httpResult.data;
   }
 }
