@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from "@angular/router";
 import { MainviewComponent } from './component/mainview/mainview.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
-import { CreationsComponent } from './component/creations/creations.component';
 import { BodyComponent } from './component/body/body.component';
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import { CreateProductComponent } from './component/create-product/create-product.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -31,14 +32,15 @@ const routes: Routes = [{
     LoginComponent,
     MainviewComponent,
     SidenavComponent,
-    CreationsComponent,
     BodyComponent,
+    CreateProductComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatButtonModule,
   ],
   providers: [AuthService, AuthService, JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
   bootstrap: [AppComponent]

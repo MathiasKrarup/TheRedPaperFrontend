@@ -3,11 +3,11 @@ import {Router} from "@angular/router";
 import {HttpService} from "../../../services/http.service";
 // @ts-ignore
 import jwtDecode from "jwt-decode";
-import {NgToastService} from "ng-angular-popup";
 
 
 class Token {
   role?: string;
+  id?: string;
 }
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private http: HttpService, private router: Router, private toast : NgToastService) {
+  constructor(private http: HttpService, private router: Router) {
 
   }
   activeClass=false;
@@ -47,8 +47,7 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password
     }
-    this.http.login(dto).then(token => {
-      console.log(token);
+    var token = await this.http.login(dto)
       localStorage.setItem('token', token)
       let decodedToken = jwtDecode(token) as Token;
       if (decodedToken.role == 'Admin') {
@@ -58,7 +57,6 @@ export class LoginComponent implements OnInit {
       }else if (decodedToken.role != 'Admin' || 'Customer'){
         this.router.navigate(['/login'])
       }
-    })
   }
 
   async createUser() {
