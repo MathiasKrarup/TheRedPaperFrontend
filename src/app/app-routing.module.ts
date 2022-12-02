@@ -9,13 +9,14 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {AdminviewComponent} from "./component/adminview/adminview.component";
 import {CreateProductComponent} from "./component/create-product/create-product.component";
+import {ProductListComponent} from "./component/product-list/product-list.component";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'mainview', component: MainviewComponent},
   {path: 'createSales', component: CreateProductComponent},
-  {path: 'adminview', component: AdminviewComponent}
+  {path: 'adminview', component: AdminviewComponent},
+  {path: 'mainview', component: ProductListComponent}
 
 ];
 

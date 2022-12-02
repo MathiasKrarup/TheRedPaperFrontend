@@ -24,17 +24,24 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { CreateProductComponent } from './component/create-product/create-product.component';
 import {MatButtonModule} from "@angular/material/button";
+import { ProductInfoComponent } from './component/product-info/product-info.component';
+import { ProductListComponent } from './component/product-list/product-list.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatListModule} from "@angular/material/list";
 
 
-const routes: Routes = [{
-  path: 'mainview', component: MainviewComponent
-},
-  {
-  path: 'login', component: LoginComponent
-},
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+
   {path: 'createSales', component: CreateProductComponent},
 
   {path: 'adminview', component: AdminviewComponent},
+
+  {path: 'mainview', component: ProductListComponent},
+
+
 
   {path: '', redirectTo: 'login', pathMatch: "full"}]
 
@@ -47,7 +54,9 @@ const routes: Routes = [{
     SidenavComponent,
     BodyComponent,
     AdminviewComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    ProductInfoComponent,
+    ProductListComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -63,7 +72,10 @@ const routes: Routes = [{
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatListModule,
   ],
 
   schemas: [NO_ERRORS_SCHEMA],

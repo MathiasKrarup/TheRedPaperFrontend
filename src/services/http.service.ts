@@ -55,4 +55,14 @@ users: any[] = [];
     const httpResponse = await customAxios.get<any>('/Condition')
     return httpResponse.data;
   }
+
+  async getProducts(){
+    const httpresponse = await customAxios.get<any>('products');
+    return httpresponse.data;
+  }
+
+  async getProductById(id: number){
+    const httpResult = await customAxios.get<any>('productinfo/'+id);
+    return httpResult.data;
+  }
 }

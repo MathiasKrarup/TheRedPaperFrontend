@@ -15,5 +15,6 @@ export const navbarData = [
     icon: 'fas fa-list',
     label: 'List of Users'
   }
+
 ];
 
