@@ -5,8 +5,8 @@ import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {userService} from "../../../services/user.service";
 import {Users} from "../../../Interfaces/user";
-import jwtDecode from "jwt-decode";
-import {Token} from "../../../Interfaces/token";
+import {DialogComponent} from "../dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -15,25 +15,25 @@ import {Token} from "../../../Interfaces/token";
   styleUrls: ['./adminview.component.scss']
 })
 export class AdminviewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'updateButton', 'deleteButton' ];
+  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'action'];
   dataSource: MatTableDataSource<Users>;
 
-  userList : any [] = []
+  userList: any [] = []
 
 
-  @ViewChild(MatPaginator) paginator : MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private service: userService) {
+  constructor(private service: userService, private dialog: MatDialog) {
   }
 
   async ngAfterViewInit() {
-      const users: Users[] = await this.service.getUsers();
-      this.dataSource = new MatTableDataSource(users);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
+    const users: Users[] = await this.service.getUsers();
+    this.dataSource = new MatTableDataSource(users);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
 
   applyFilter(event: Event) {
@@ -51,5 +51,18 @@ export class AdminviewComponent implements AfterViewInit {
       this.dataSource.data = this.dataSource.data.filter(u => u.id != user.id);
     }
   }
-}
 
+  editUser(row: any) {
+    const data = this.dialog.open(DialogComponent, {
+      data: {
+        users: this.userList,
+        row: row
+      }
+    });
+    data.afterClosed().subscribe(async result => {
+      if (result != null) {
+        this.dataSource = new MatTableDataSource(await this.service.getUsers());
+      }
+    });
+  }
+}

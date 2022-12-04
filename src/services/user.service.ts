@@ -19,13 +19,19 @@ export class userService {
   }
 
   async getUsers() {
-    const httpResponse = await customAxios.get<any>('/User');
-    this.users = httpResponse.data;
-    return httpResponse.data;
+    const result = await customAxios.get<any>('/User');
+    this.users = result.data;
+    return result.data;
+  }
+
+  async updateUser(id: any, dto: {firstName: string; lastName: string; username: string; password: string;
+  email: string; location: string}) {
+    const result = await customAxios.put('/User/Edit/'+id, dto);
+    return result.data;
   }
 
   async deleteUser(id: any) {
-    const result = await  customAxios.delete('https://localhost:7175/User/'+id)
+    const result = await  customAxios.delete('/User/'+id)
     return result.data;
   }
 
