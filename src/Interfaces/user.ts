@@ -4,6 +4,4 @@ export interface Users {
   lastName: string,
   username: string,
   email: string,
-  updateButton: string,
-  deleteButton: string,
 }

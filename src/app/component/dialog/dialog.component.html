@@ -1,0 +1,46 @@
+<h1>Edit selected Customer here</h1>
+<form>
+<div mat-dialog-content>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Firstname</mat-label>
+      <input matInput placeholder="Firstname" type="string" [(ngModel)]="firstName" value="{{firstName}}"
+             [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="secondField" appearance="outline">
+      <mat-label>Lastname</mat-label>
+      <input matInput placeholder="Lastname" type="string" [(ngModel)]="lastName"
+      value="{{lastName}}" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Username" type="string" [(ngModel)]="username"
+             value="{{username}}" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="secondField" appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput placeholder="E-mail" type="string" [(ngModel)]="email"
+             value="{{email}}" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>password</mat-label>
+      <input matInput placeholder="password" type="password" [(ngModel)]="password"
+             value="{{password}}" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field class="secondField" appearance="outline">
+      <mat-label>Location</mat-label>
+      <input matInput placeholder="E-mail" type="string" [(ngModel)]="location"
+             value="{{location}}" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <button mat-raised-button (click)="saveUser()">Save</button>
+    <button mat-raised-button (click)="close()">Cancel</button>
+  </p>
+</div>
+</form>

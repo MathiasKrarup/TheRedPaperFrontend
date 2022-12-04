@@ -8,7 +8,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { MainviewComponent } from './component/mainview/mainview.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { BodyComponent } from './component/body/body.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AdminviewComponent} from "./component/adminview/adminview.component";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -21,6 +21,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { CreateProductComponent } from './component/create-product/create-product.component';
 import {MatButtonModule} from "@angular/material/button";
+import {MatDialogModule} from "@angular/material/dialog";
+import { DialogComponent } from './component/dialog/dialog.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from "@angular/material/list";
 
 
 const routes: Routes = [{
@@ -44,7 +48,8 @@ const routes: Routes = [{
     SidenavComponent,
     BodyComponent,
     AdminviewComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    DialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -60,8 +65,14 @@ const routes: Routes = [{
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatListModule,
+    ReactiveFormsModule
   ],
+  entryComponents: [DialogComponent],
+
 
   exports: [MatTableModule],
   providers: [],
