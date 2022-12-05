@@ -56,13 +56,24 @@ users: any[] = [];
     return httpResponse.data;
   }
 
-  async getProducts(){
-    const httpresponse = await customAxios.get<any>('products');
-    return httpresponse.data;
-  }
 
   async getProductById(id: number){
     const httpResult = await customAxios.get<any>('productinfo/'+id);
+    return httpResult.data;
+  }
+
+  async getAllProducts() {
+    const httpResult = await customAxios.get<any>('/Product/GetAllProducts');
+    return httpResult.data;
+  }
+
+  async sortingByHighToLow(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsFromPrice');
+    return httpResult.data;
+  }
+
+  async sortingByLowToHigh(){
+    const httpResult = await customAxios.get<any>();
     return httpResult.data;
   }
 }

@@ -13,18 +13,27 @@ export class ProductListComponent implements OnInit {
   imageUrl : string = "";
   price : number = 0;
 
-
-  sortby: 'default' | 'htl' | 'lth' = 'default';
+  sortby: 'default' | 'htl' | 'lth' = 'default'
   constructor(private http: HttpService) { }
 
   async ngOnInit(){
-    this.productList = await this.http.getProducts();
+    this.productList = await this.http.getAllProducts();
   }
 
 
   getProductById(id:number){
-    this.http.getProductById(id)
+    this.http.getProductById(id);
   }
 
+  async sortingDefault(){
+    this.productList = await this.http.getAllProducts();
+  }
 
+ async sortingByHighToLow(){
+     this.productList = await this.http.sortingByHighToLow();
+  }
+
+  async sortingByLowToHigh(){
+    this.productList = await this.http.sortingByLowToHigh();
+  }
 }
