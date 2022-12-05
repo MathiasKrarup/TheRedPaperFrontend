@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService} from "../../../services/http.service";
+import {ProductService} from "../../../services/product.service";
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   price : number = 0;
 
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
-  constructor(private http: HttpService) { }
+  constructor(private http: ProductService) { }
 
   async ngOnInit(){
     this.productList = await this.http.getAllProducts();
