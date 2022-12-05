@@ -28,6 +28,7 @@ import { ProductListComponent } from './component/product-list/product-list.comp
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from "@angular/material/list";
+import {AuthguardService} from "../services/authguard.service";
 
 
 
@@ -36,7 +37,7 @@ const routes: Routes = [
 
   {path: 'createSales', component: CreateProductComponent},
 
-  {path: 'adminview', component: AdminviewComponent},
+  {path: 'adminview', component: AdminviewComponent, canActivate: [AuthguardService]},
 
   {path: 'mainview', component: ProductListComponent},
 

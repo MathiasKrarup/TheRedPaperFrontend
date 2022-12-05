@@ -1,6 +1,8 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {navbarData} from "./nav-data";
 import {NavigationEnd, Router} from "@angular/router";
+import jwtDecode from "jwt-decode";
+import {Token} from "../../../Interfaces/token";
 
 interface SideNavToggle {
   screenWidth: number;
@@ -27,6 +29,7 @@ export class SidenavComponent implements OnInit {
   }
 
   currentRoute: string = "";
+
   constructor(private router: Router) {
     // @ts-ignore
     this.router.events.subscribe((event: Event) => {
@@ -54,4 +57,3 @@ export class SidenavComponent implements OnInit {
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
 }
-

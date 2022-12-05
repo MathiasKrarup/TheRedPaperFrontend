@@ -78,19 +78,4 @@ export class CreateProductComponent implements OnInit {
       await this.router.navigateByUrl('/mainview');
     }
 
-
-
-
-  /*
-    constructor(firstCond: ConditionType = ConditionType.Fremragende, secondCond: ConditionType = ConditionType.God,
-                thirdCond: ConditionType = ConditionType.Brugt, fourthCond: ConditionType = ConditionType.Nedslidt) {
-      this.condition = firstCond;
-      this.condition = secondCond;
-      this.condition = thirdCond
-      this.condition = fourthCond;
-    }
-   */
-
-
-
 }
