@@ -68,12 +68,22 @@ users: any[] = [];
   }
 
   async sortingByHighToLow(){
-    const httpResult = await customAxios.get<any>('/GetAllProductsFromPrice');
+    const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceHighToLow');
     return httpResult.data;
   }
 
   async sortingByLowToHigh(){
-    const httpResult = await customAxios.get<any>();
+    const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceLowToHigh');
+    return httpResult.data;
+  }
+
+  async sortingByAToZ(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingA-Z');
+    return httpResult.data;
+  }
+
+  async sortingByZToA(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingZ-A');
     return httpResult.data;
   }
 }
