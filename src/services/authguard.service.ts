@@ -23,6 +23,7 @@ export class AuthguardService implements CanActivate{
         }
       }
     }
+    alert("You're not an admin")
     return false;
   }
 }
