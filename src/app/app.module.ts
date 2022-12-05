@@ -24,18 +24,23 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogComponent } from './component/dialog/dialog.component';
 import {MatIconModule} from "@angular/material/icon";
+import { ProductListComponent } from './component/product-list/product-list.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from "@angular/material/list";
 
 
-const routes: Routes = [{
-  path: 'mainview', component: MainviewComponent
-},
-  {
-  path: 'login', component: LoginComponent
-},
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+
   {path: 'createSales', component: CreateProductComponent},
 
   {path: 'adminview', component: AdminviewComponent},
+
+  {path: 'mainview', component: ProductListComponent},
+
+
 
   {path: '', redirectTo: 'login', pathMatch: "full"}]
 
@@ -49,7 +54,8 @@ const routes: Routes = [{
     BodyComponent,
     AdminviewComponent,
     CreateProductComponent,
-    DialogComponent
+    DialogComponent,
+    ProductListComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -69,7 +75,10 @@ const routes: Routes = [{
     MatDialogModule,
     MatIconModule,
     MatListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatListModule,
   ],
   entryComponents: [DialogComponent],
 

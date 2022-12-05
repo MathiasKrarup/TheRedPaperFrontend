@@ -1,0 +1,27 @@
+<div class="my-container mx-auto border border-dark">
+  <mat-toolbar class="mx-auto">
+      <div class="w-50 d-flex">
+        <span class="me-5 d-flex align-items-center fs-5 fw-bold">Sort By</span>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active' : sortby =='default'}" (click)=sortingDefault()>Default</button>
+          <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active' : sortby =='htl'}" (click)=sortingByHighToLow()>Price (High to Low)</button>
+          <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active' : sortby =='lth'}" (click)=sortingByLowToHigh()>Price (Low to High)</button>
+          <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active' : sortby =='atz'}" (click)=sortingByAToZ()>Alphabetic (A-Z)</button>
+          <button type="button" class="btn btn-outline-secondary" [ngClass]="{'active' : sortby =='zta'}" (click)=sortingByZToA()>Alphabetic (Z-A)</button>
+        </div>
+      </div>
+  </mat-toolbar>
+</div>
+
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let item of productList">
+      <div class="card col-md-3">
+        <img src="{{item.imageUrl}}" alt="">
+        <p><strong>Name:</strong> {{item.productName}}</p>
+        <p><strong>Price:</strong> {{item.price}} kr.</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+

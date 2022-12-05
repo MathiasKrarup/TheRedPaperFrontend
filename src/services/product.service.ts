@@ -36,5 +36,33 @@ export class ProductService {
     const httpResult = await customAxios.post<any>('/Product', dto)
     return httpResult.data;
   }
+  async getProductById(id: number){
+    const httpResult = await customAxios.get<any>('productinfo/'+id);
+    return httpResult.data;
+  }
 
+  async getAllProducts() {
+    const httpResult = await customAxios.get<any>('/Product/GetAllProducts');
+    return httpResult.data;
+  }
+
+  async sortingByHighToLow(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceHighToLow');
+    return httpResult.data;
+  }
+
+  async sortingByLowToHigh(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceLowToHigh');
+    return httpResult.data;
+  }
+
+  async sortingByAToZ(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingA-Z');
+    return httpResult.data;
+  }
+
+  async sortingByZToA(){
+    const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingZ-A');
+    return httpResult.data;
+  }
 }
