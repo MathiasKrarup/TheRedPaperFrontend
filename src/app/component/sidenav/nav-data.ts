@@ -14,6 +14,12 @@ export const navbarData = [
   {
     routeLink: 'adminview',
     icon: 'fas fa-list',
+    label: 'Adminview'
+  },
+
+  {
+    button: 'SignOut',
+    label: 'Sign out'
   }
 
 ];

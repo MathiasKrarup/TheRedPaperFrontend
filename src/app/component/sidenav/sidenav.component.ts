@@ -3,6 +3,7 @@ import {navbarData} from "./nav-data";
 import {NavigationEnd, Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
 import {Token} from "../../../Interfaces/token";
+import {userService} from "../../../services/user.service";
 
 interface SideNavToggle {
   screenWidth: number;
@@ -30,7 +31,7 @@ export class SidenavComponent implements OnInit {
 
   currentRoute: string = "";
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private service: userService) {
     // @ts-ignore
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -55,5 +56,16 @@ export class SidenavComponent implements OnInit {
   closeSidenav(): void {
     this.collapsed = false
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
+  }
+
+  LogOut() {
+    this.router.navigate(['/login']).then(() =>{
+      alert("You're now logged out")
+      localStorage.clear();
+      this.service.firstName = undefined;
+      this.service.lastName = undefined;
+      this.service.username = undefined;
+      this.service.role = undefined;
+    })
   }
 }
