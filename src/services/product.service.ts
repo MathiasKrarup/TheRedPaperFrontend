@@ -55,6 +55,9 @@ export class ProductService {
     const httpResult = await customAxios.get<any>('/Product/GetAllProducts');
     return httpResult.data;
   }
+  getAllProductsFromSubId(selectedSubId: string): Observable<any>{
+    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub');
+  }
 
   async sortingByHighToLow(){
     const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceHighToLow');

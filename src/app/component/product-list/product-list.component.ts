@@ -18,6 +18,8 @@ export class ProductListComponent implements OnInit {
   price : number = 0;
   selectedCategory!: string;
 
+  selectedSubCategory!: string;
+
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
   constructor(private http: ProductService) { }
 
@@ -31,6 +33,13 @@ export class ProductListComponent implements OnInit {
     this.http.getProductById(id);
   }
 
+  OnSubCategorySelected(selectedSubId: any){
+  this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
+  this.productList = data
+  console.log(data)
+})
+
+}
   async sortingDefault(){
     this.productList = await this.http.getAllProducts();
     this.sortby = 'default';
