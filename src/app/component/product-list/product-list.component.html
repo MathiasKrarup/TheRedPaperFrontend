@@ -19,7 +19,7 @@
   <mat-form-field class="subCategory">
 
     <mat-label class="dropdownLabel">SubCategory</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="selectedSubCategory" (ngModelChange)="OnSubCategorySelected($event)">
       <mat-option *ngFor="let subCategory of subCategorylist" [value]="subCategory.id" class="selected">
         {{subCategory.subName}}
       </mat-option>
