@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../../services/product.service";
 import {Category} from "../../../Interfaces/category";
 import {Subcategory} from "../../../Interfaces/subcategory";
+import {Product} from "../../../Interfaces/product";
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +13,7 @@ export class ProductListComponent implements OnInit {
 
   subCategorylist: Subcategory[]
   categorylist!: Category[]
-  productList : any[] = []
+  productList!: Product[]
   productName : string = "";
   imageUrl : string = "";
   price : number = 0;
@@ -46,22 +47,22 @@ export class ProductListComponent implements OnInit {
   }
 
  async sortingByHighToLow(){
-     this.productList = await this.http.sortingByHighToLow();
+   this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
      this.sortby = 'htl';
   }
 
   async sortingByLowToHigh(){
-    this.productList = await this.http.sortingByLowToHigh();
+    this.productList.sort((a, b) => (a.price < b.price ? -1 : 1));
     this.sortby = 'lth';
   }
 
   async sortingByAToZ(){
-    this.productList = await this.http.sortingByAToZ();
+    this.productList.sort((a, b) => (a.productName < b.productName ? -1 : 1));
     this.sortby = 'atz';
   }
 
   async sortingByZToA(){
-    this.productList = await this.http.sortingByZToA();
+    this.productList.sort((a, b) => (a.productName > b.productName ? -1 : 1));
     this.sortby = 'zta';
   }
   private loadCategories(){

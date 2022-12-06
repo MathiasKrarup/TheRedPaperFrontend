@@ -56,7 +56,7 @@ export class ProductService {
     return httpResult.data;
   }
   getAllProductsFromSubId(selectedSubId: string): Observable<any>{
-    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub');
+    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub/' + selectedSubId);
   }
 
   async sortingByHighToLow(){
