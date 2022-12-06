@@ -29,6 +29,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from "@angular/material/list";
 import {AuthguardService} from "../services/authguard.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 
@@ -80,6 +81,7 @@ const routes: Routes = [
     MatToolbarModule,
     MatGridListModule,
     MatListModule,
+    HttpClientModule
   ],
   entryComponents: [DialogComponent],
 
