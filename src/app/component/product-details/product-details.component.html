@@ -1,0 +1,29 @@
+<p>
+  <mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">X</button>
+  </mat-dialog-actions>
+</p>
+<form>
+  <div class="wrapper">
+    <p>
+      <img src="{{imageUrl}}" alt="">
+    </p>
+
+    <p>
+      
+      <mat-label>{{productName}}</mat-label>
+
+      <mat-label class="secondField">Price {{price}} kr.</mat-label>
+    </p>
+
+    <p>
+      <mat-label>Condition:{{condition}} god</mat-label>
+
+      <mat-label class="secondField">Description: {{description}}</mat-label>
+
+    </p>
+
+  </div>
+  <button class="btn1" type="button">Køb nu</button>
+  <button class="btn2" type="button">Tilføj til ordre</button>
+</form>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../../services/product.service";
+import {ProductDetailsComponent} from "../product-details/product-details.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-product-list',
@@ -14,12 +16,25 @@ export class ProductListComponent implements OnInit {
   price : number = 0;
 
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
-  constructor(private http: ProductService) { }
+  constructor(private http: ProductService, private dialog: MatDialog) { }
 
   async ngOnInit(){
     this.productList = await this.http.getAllProducts();
   }
 
+
+  openDialog(item: any){
+    let dialogRef = this.dialog.open(ProductDetailsComponent, {
+      data: {
+        products: this.productList,
+        item: item}});
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log("Dialog closed");
+      if (result != null){
+        this.productList[this.productList.findIndex(item => item.id == result.id)] = result;
+      }
+    });
+  }
 
   getProductById(id:number){
     this.http.getProductById(id);
