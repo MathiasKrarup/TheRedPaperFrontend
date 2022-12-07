@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ProductService} from "../../../services/product.service";
 
 
+
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -19,7 +21,6 @@ export class ProductDetailsComponent implements OnInit {
   imageUrl: string = "";
   description: string = "";
   seller: object = null;
-
   constructor(private dialogRef: MatDialogRef<ProductDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data : any,
               private service: ProductService) {

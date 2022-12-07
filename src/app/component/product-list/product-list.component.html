@@ -18,7 +18,7 @@
     <ng-container *ngFor="let item of productList">
       <div class="card col-md-3" (click)="openDialog(item)">
         <img src="{{item.imageUrl}}" alt="">
-        <p><strong>Name:</strong> {{item.productName}}</p>
+        <p><strong>{{item.productName}}</strong> </p>
         <p><strong>Price:</strong> {{item.price}} kr.</p>
       </div>
     </ng-container>

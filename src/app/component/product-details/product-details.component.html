@@ -1,27 +1,46 @@
-<p>
-  <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="close()">X</button>
-  </mat-dialog-actions>
-</p>
 <form>
   <div class="wrapper">
     <p>
-      <img src="{{imageUrl}}" alt="">
+      <mat-dialog-actions>
+        <button class="mat-raised-button" (click)="close()">X</button>
+      </mat-dialog-actions>
     </p>
-
     <p>
-      
-      <mat-label>{{productName}}</mat-label>
-
-      <mat-label class="secondField">Price {{price}} kr.</mat-label>
+      <img src="{{imageUrl}}" alt="" style="max-width:800px; max-height:800px;">
     </p>
 
-    <p>
-      <mat-label>Condition:{{condition}} god</mat-label>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxLayout="column" fxFlex = "45" class="labelCss">
+          <p>
+            <mat-label>{{productName}}</mat-label>
+          </p>
+          <p>
+            <mat-label>Price {{price}} kr.</mat-label>
+          </p>
+          <p>
+            <mat-label>Condition:{{condition}} god </mat-label>
+          </p>
+          <p>
+            <mat-label> Description: {{description}}</mat-label>
+          </p>
+        </div>
 
-      <mat-label class="secondField">Description: {{description}}</mat-label>
+        <div fxLayout="column" fxFlex = "45" class="labelCss2">
+          <p>
+            <mat-label>{{productName}}</mat-label>
+          </p>
+          <p>
+            <mat-label>Price {{price}} kr.</mat-label>
+          </p>
+          <p>
+            <mat-label>Condition:{{condition}} god </mat-label>
+          </p>
+          <p>
+            <mat-label>Description: {{description}}</mat-label>
+          </p>
+        </div>
+    </div>
 
-    </p>
 
   </div>
   <button class="btn1" type="button">Køb nu</button>

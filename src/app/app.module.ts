@@ -30,6 +30,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from "@angular/material/list";
 import {AuthguardService} from "../services/authguard.service";
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
+
 
 
 
@@ -82,6 +84,8 @@ const routes: Routes = [
     MatToolbarModule,
     MatGridListModule,
     MatListModule,
+    FlexLayoutModule,
+
   ],
   entryComponents: [DialogComponent],
 
