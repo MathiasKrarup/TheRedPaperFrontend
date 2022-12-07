@@ -1,1 +1,33 @@
-<p>edit-product works!</p>
+<h1>Edit selected product here</h1>
+<form>
+  <div mat-dialog-content>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product name</mat-label>
+        <input matInput placeholder="Product Name" type="string" [(ngModel)]="productName" value="{{productName}}"
+               [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="secondField" appearance="outline">
+        <mat-label>Price</mat-label>
+        <input matInput placeholder="Price" type="number" [(ngModel)]="price"
+               value="{{price}}" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Description" type="string" [(ngModel)]="description"
+               value="{{description}}" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="secondField" appearance="outline">
+      <mat-label>ImageUrl</mat-label>
+      <input matInput placeholder="imageUrl" type="string" [(ngModel)]="imageUrl"
+             value="{{imageUrl}}" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+    </p>
+      <button mat-raised-button (click)="updateProduct()">Save</button>
+      <button mat-raised-button (click)="close()">Cancel</button>
+
+  </div>
+</form>

@@ -64,6 +64,17 @@ export class ProductService {
     return httpResult.data;
   }
 
+
+  async updateProduct(id: number, dto: {productName: string; description: string; price: number;}) {
+    const httpResult = await customAxios.put('/Product/Edit/'+id, dto);
+    return httpResult.data;
+  }
+
+ async deleteProduct(id: any) {
+    const httpResult = await customAxios.delete('https://localhost:7175/Product/'+id);
+    return httpResult.data;
+ }
+
   async sortingByHighToLow(){
     const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceHighToLow');
     return httpResult.data;
