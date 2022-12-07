@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import {Observable} from "rxjs";
+import {Category} from "../Interfaces/category";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 export const customAxios = axios.create({
   baseURL: 'https://localhost:7175',
@@ -15,11 +18,15 @@ export const customAxios = axios.create({
 export class ProductService {
 
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   async getConditions(){
     const httpResponse = await customAxios.get<any>('/Condition')
     return httpResponse.data;
+  }
+
+   getCategoriesObservable(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>('https://localhost:7175/Category');
   }
 
   async getCategories() {
@@ -27,6 +34,9 @@ export class ProductService {
     return httpResponse.data;
   }
 
+  getSubCategoriesFromCategory(selectedCategoryId: string): Observable<any>{
+    return this.httpClient.get(  'https://localhost:7175/SubCategory/GetAllSubsFromCategories/'+selectedCategoryId)
+  }
   async getSubcategories () {
     const httpResponse = await customAxios.get<any>('/SubCategory/GetAllSubs')
     return httpResponse.data;
@@ -44,6 +54,9 @@ export class ProductService {
   async getAllProducts() {
     const httpResult = await customAxios.get<any>('/Product/GetAllProducts');
     return httpResult.data;
+  }
+  getAllProductsFromSubId(selectedSubId: string): Observable<any>{
+    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub/' + selectedSubId);
   }
 
   async sortingByHighToLow(){
