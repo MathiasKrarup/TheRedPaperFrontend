@@ -1,6 +1,9 @@
 import {Component, Inject, inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ProductService} from "../../../services/product.service";
+import {Product} from "../../../Interfaces/product";
+import {Users} from "../../../Interfaces/user";
+import {Condition} from "../../../Interfaces/condition";
 
 
 
@@ -12,15 +15,17 @@ import {ProductService} from "../../../services/product.service";
 })
 export class ProductDetailsComponent implements OnInit {
 
-  productDetailList : any[] = [];
+  productDetailList : Product[];
+
 
   id: number = 0;
   productName: string = "";
   price: number = 0;
-  condition: string = "";
+  productCondition: Condition = null;
   imageUrl: string = "";
   description: string = "";
-  seller: object = null;
+  user: Users = null;
+
   constructor(private dialogRef: MatDialogRef<ProductDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data : any,
               private service: ProductService) {
@@ -30,9 +35,10 @@ export class ProductDetailsComponent implements OnInit {
     this.id = data.item.id;
     this.productName = data.item.productName;
     this.price = data.item.price;
-    this.condition = data.item.condition;
+    this.productCondition = data.item.productCondition;
     this.imageUrl = data.item.imageUrl;
     this.description = data.item.description;
+    this.user = data.item.user;
   }
 
   ngOnInit(): void {

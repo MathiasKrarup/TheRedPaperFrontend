@@ -16,9 +16,6 @@ export class ProductListComponent implements OnInit {
   subCategorylist: Subcategory[]
   categorylist!: Category[]
   productList!: Product[]
-  productName : string = "";
-  imageUrl : string = "";
-  price : number = 0;
   selectedCategory!: string;
 
   selectedSubCategory!: string;
