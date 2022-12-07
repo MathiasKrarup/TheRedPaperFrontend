@@ -59,6 +59,11 @@ export class ProductService {
     return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub/' + selectedSubId);
   }
 
+  async getProductsFromUser(userId: any) {
+    const httpResult = await customAxios.get<any>('/Product/getProductsFromUser' + userId);
+    return httpResult.data;
+  }
+
   async sortingByHighToLow(){
     const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceHighToLow');
     return httpResult.data;
