@@ -16,11 +16,5 @@ export const navbarData = [
     icon: 'fas fa-list',
     label: 'Adminview'
   },
-
-  {
-    button: 'SignOut',
-    label: 'Sign out'
-  }
-
 ];
 
