@@ -2,8 +2,8 @@
   <div class="row">
     <ng-container *ngFor="let item of productList">
       <div class="card col-md-3">
-        <img src="{{item.productName}}" alt="">
-        <p><strong>Name:</strong> {{item.price}}</p>
+        <p><strong>Name:</strong> {{item.productName}}</p>
+        <p><strong>Price:</strong> {{item.price}}</p>
         <p><strong>Description:</strong> {{item.description}}</p>
         <button class="fa fa-pen btnUpdate" (click)="openEditProduct(item)">Update product</button>
         <button class="fa fa-trash btnDelete" (click)="deleteProduct(item.id)"> Delete product</button>
