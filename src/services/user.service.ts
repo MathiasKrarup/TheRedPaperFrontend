@@ -14,6 +14,10 @@ export const customAxios = axios.create({
 })
 export class userService {
   users: any[] = [];
+  firstName: any;
+  username: any;
+  lastName: any;
+  role: any;
 
   constructor() {
   }
