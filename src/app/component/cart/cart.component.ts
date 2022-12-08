@@ -9,16 +9,24 @@ import {subscribeOn} from "rxjs";
 })
 export class CartComponent implements OnInit {
 
-  product : any = [];
+  products : any = [];
   grandTotal !: number;
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
     this.cartService.getProducts()
       .subscribe(res=>{
-        this.product = res;
+        this.products = res;
         this.grandTotal = this.cartService.getTotalPrice();
       })
+  }
+
+  removeItem(item: any) {
+    this.cartService.removeCartItem(item);
+  }
+
+  emptyCart() {
+    this.cartService.removeAllCart();
   }
 
 }

@@ -55,8 +55,9 @@
     <ng-container *ngFor="let item of productList">
       <div class="card col-md-3">
         <img src="{{item.imageUrl}}" alt="" (click)="openDialog(item)">
-        <p><strong>{{item.productName}}</strong> </p>
-        <p><strong>Price:</strong> {{item.price}} kr.</p>
+        <p><strong>Product name: </strong>{{item.productName}} </p>
+        <p><strong>Price:</strong> {{item.price}}kr.</p>
+        <p><strong>Description:</strong>{{item.description}}</p>
         <button class="btn2" type="button" (click)="addToCart(item)">Tilføj til ordre</button>
       </div>
     </ng-container>
