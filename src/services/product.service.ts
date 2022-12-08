@@ -65,7 +65,8 @@ export class ProductService {
   }
 
 
-  async updateProduct(id: number, dto: {productName: string; description: string; price: number;}) {
+  async updateProduct(id: number, dto: {productName: string; description: string; price: number; subCategoryID: number
+  imageUrl: string; productConditionId: number}) {
     const httpResult = await customAxios.put('/Product/Edit/'+id, dto);
     return httpResult.data;
   }

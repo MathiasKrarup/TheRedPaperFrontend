@@ -13,6 +13,8 @@ export class EditProductComponent implements OnInit {
   price: number = 0;
   description: string = "";
   imageUrl: string = "";
+  productConditionId: number = 0;
+  subCategoryID: number = 0;
 
   productList: any [] = []
 
@@ -25,7 +27,8 @@ export class EditProductComponent implements OnInit {
     this.price = data.item.price;
     this.description = data.item.description;
     this.imageUrl = data.item.imageUrl;
-
+    this.productConditionId = data.item.productConditionId;
+    this.subCategoryID = data.item.subCategoryID;
   }
 
   ngOnInit(): void {
@@ -46,10 +49,12 @@ export class EditProductComponent implements OnInit {
   async createDTO() {
     let dto = {
       id: this.id,
+      productConditionId: this.productConditionId,
       productName: this.productName,
       price: this.price,
       description: this.description,
-      imageUrl: this.imageUrl
+      imageUrl: this.imageUrl,
+      subCategoryID: this.subCategoryID
     }
     return dto;
   }

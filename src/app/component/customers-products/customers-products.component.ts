@@ -18,6 +18,7 @@ export class CustomersProductsComponent implements OnInit {
   productName: string = "";
   price: number = 0;
   description: string = "";
+  imageUrl: string = "";
 
   constructor(private http : ProductService, private dialog: MatDialog) { }
 
