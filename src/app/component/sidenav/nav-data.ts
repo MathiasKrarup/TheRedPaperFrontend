@@ -13,8 +13,13 @@ export const navbarData = [
 
   {
     routeLink: 'adminview',
-    icon: 'fas fa-list',
+    icon: 'fas fa-list-ol',
     label: 'Adminview'
   },
+  {
+   routeLink: 'myProducts',
+   icon: 'fas fa-list',
+   label: 'My products'
+  }
 ];
 

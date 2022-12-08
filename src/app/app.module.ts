@@ -32,6 +32,8 @@ import {AuthguardService} from "../services/authguard.service";
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { CustomersProductsComponent } from './component/customers-products/customers-products.component';
+import { EditProductComponent } from './component/edit-product/edit-product.component';
 
 
 
@@ -43,6 +45,8 @@ const routes: Routes = [
   {path: 'adminview', component: AdminviewComponent, canActivate: [AuthguardService]},
 
   {path: 'mainview', component: ProductListComponent},
+
+  {path: 'myProducts', component: CustomersProductsComponent},
 
 
 
@@ -60,6 +64,8 @@ const routes: Routes = [
     CreateProductComponent,
     DialogComponent,
     ProductListComponent,
+    CustomersProductsComponent,
+    EditProductComponent,
     ProductDetailsComponent
   ],
   imports: [

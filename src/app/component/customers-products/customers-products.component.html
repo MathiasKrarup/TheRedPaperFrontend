@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <ng-container *ngFor="let item of productList">
+      <div class="card col-md-3">
+        <img src="{{item.imageUrl}}" alt="">
+        <p><strong>Name:</strong> {{item.productName}}</p>
+        <p><strong>Price:</strong> {{item.price}}</p>
+        <p><strong>Description:</strong> {{item.description}}</p>
+        <p>
+        <mat-icon id="edit" (click)="openEditProduct(item)">edit</mat-icon>
+        <mat-icon id="delete" (click)="deleteProduct(item.id)">delete</mat-icon>
+        </p>
+      </div>
+    </ng-container>
+  </div>
+</div>
