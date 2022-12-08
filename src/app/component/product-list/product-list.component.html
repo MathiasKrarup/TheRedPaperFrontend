@@ -48,7 +48,7 @@
   <div class="row">
     <ng-container *ngFor="let item of productList">
       <div class="card col-md-3" (click)="openDialog(item)">
-        <img src="{{item.imageUrl}}" alt="">
+        <img class="img" src="{{item.imageUrl}}" alt="" style="max-width:250px; max-height:250px;">
         <p><strong>{{item.productName}}</strong> </p>
         <p><strong>Price:</strong> {{item.price}} kr.</p>
       </div>
