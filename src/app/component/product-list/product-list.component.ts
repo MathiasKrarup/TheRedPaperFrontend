@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {Category} from "../../../Interfaces/category";
 import {Subcategory} from "../../../Interfaces/subcategory";
 import {Product} from "../../../Interfaces/product";
+import {CartService} from "../../../services/cart.service";
 
 @Component({
   selector: 'app-product-list',
@@ -21,11 +22,21 @@ export class ProductListComponent implements OnInit {
   selectedSubCategory!: string;
 
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
-  constructor(private http: ProductService, private dialog: MatDialog) { }
+
+  totalItem : number = 0;
+  constructor(private http: ProductService, private dialog: MatDialog, private cartService : CartService) { }
 
   async ngOnInit(){
     this.productList = await this.http.getAllProducts();
     this.loadCategories()
+
+    this.productList.forEach((a:any) => {
+      Object.assign(a, {quantity:1,total:a.price});
+    })
+    this.cartService.getProducts()
+      .subscribe(res=>{
+        this.totalItem = res.length;
+      })
   }
 
 
@@ -88,5 +99,10 @@ export class ProductListComponent implements OnInit {
       this.subCategorylist = data
       console.log(data)
     })
+  }
+
+
+  addToCart(item: any) {
+    this.cartService.addToCart(item);
   }
 }
