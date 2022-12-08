@@ -1,0 +1,48 @@
+<form>
+  <div class="wrapper">
+    <p>
+      <mat-dialog-actions>
+        <button class="mat-raised-button" (click)="close()">X</button>
+      </mat-dialog-actions>
+    </p>
+    <p>
+      <img src="{{imageUrl}}" alt="" style="max-width:800px; max-height:800px;">
+    </p>
+
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxLayout="column" fxFlex = "45" class="labelCss">
+          <p>
+            <mat-label>{{productName}}</mat-label>
+          </p>
+          <p>
+            <mat-label>Price: {{price}} kr.</mat-label>
+          </p>
+          <p>
+            <mat-label>Condition:{{productCondition.name}} </mat-label>
+          </p>
+          <p>
+            <mat-label> Description: {{description}}</mat-label>
+          </p>
+        </div>
+
+        <div fxLayout="column" fxFlex = "45" class="labelCss2">
+          <p>
+            <mat-label>{{user.firstName}} {{user.lastName}}</mat-label>
+          </p>
+          <p>
+            <mat-label>Phone number: {{user.phoneNumber}}</mat-label>
+          </p>
+          <p>
+            <mat-label>E-mail: {{user.email}}</mat-label>
+          </p>
+          <p>
+            <mat-label>Location: {{user.location}}</mat-label>
+          </p>
+        </div>
+    </div>
+
+
+  </div>
+  <button class="btn1" type="button">Køb nu</button>
+  <button class="btn2" type="button">Tilføj til ordre</button>
+</form>

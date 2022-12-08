@@ -29,6 +29,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from "@angular/material/list";
 import {AuthguardService} from "../services/authguard.service";
+import { ProductDetailsComponent } from './component/product-details/product-details.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CustomersProductsComponent } from './component/customers-products/customers-products.component';
 import { EditProductComponent } from './component/edit-product/edit-product.component';
@@ -63,7 +65,8 @@ const routes: Routes = [
     DialogComponent,
     ProductListComponent,
     CustomersProductsComponent,
-    EditProductComponent
+    EditProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -87,6 +90,7 @@ const routes: Routes = [
     MatToolbarModule,
     MatGridListModule,
     MatListModule,
+    FlexLayoutModule,
     HttpClientModule
   ],
   entryComponents: [DialogComponent],

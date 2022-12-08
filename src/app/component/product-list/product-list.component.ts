@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../../services/product.service";
+import {ProductDetailsComponent} from "../product-details/product-details.component";
+import {MatDialog} from "@angular/material/dialog";
 import {Category} from "../../../Interfaces/category";
 import {Subcategory} from "../../../Interfaces/subcategory";
 import {Product} from "../../../Interfaces/product";
@@ -14,21 +16,31 @@ export class ProductListComponent implements OnInit {
   subCategorylist: Subcategory[]
   categorylist!: Category[]
   productList!: Product[]
-  productName : string = "";
-  imageUrl : string = "";
-  price : number = 0;
   selectedCategory!: string;
 
   selectedSubCategory!: string;
 
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
-  constructor(private http: ProductService) { }
+  constructor(private http: ProductService, private dialog: MatDialog) { }
 
   async ngOnInit(){
     this.productList = await this.http.getAllProducts();
     this.loadCategories()
   }
 
+
+  openDialog(item: any){
+    let dialogRef = this.dialog.open(ProductDetailsComponent, {
+      data: {
+        products: this.productList,
+        item: item}});
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log("Dialog closed");
+      if (result != null){
+        this.productList[this.productList.findIndex(item => item.id == result.id)] = result;
+      }
+    });
+  }
 
   getProductById(id:number){
     this.http.getProductById(id);
