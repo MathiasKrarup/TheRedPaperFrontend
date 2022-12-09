@@ -23,7 +23,7 @@
             <td colspan="4"></td>
             <td><button (click)="emptyCart()" class="btn btn-danger">Empty Cart</button></td>
             <td><button routerLink="/mainview" class="btn btn-primary">Shop More</button></td>
-            <td><button class="btn btn-success">Empty Cart</button></td>
+            <td><button (click)="createOrder()" class="btn btn-success">Empty Cart</button></td>
             <td> <strong>Grand Total : ${{grandTotal}}</strong> </td>
           </tr>
           </tbody>

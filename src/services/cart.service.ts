@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
+import {Product} from "../Interfaces/product";
+import {customAxios} from "../app/component/cart/cart.component";
 
 @Injectable({
   providedIn: 'root'
@@ -49,4 +51,8 @@ export class CartService {
     this.productList.next(this.cartItemList);
   }
 
+  async createOrder(dto: {userId: any; products: any}) {
+    const httpResult = await customAxios.post('/Order', dto)
+    return httpResult.data
+  }
 }
