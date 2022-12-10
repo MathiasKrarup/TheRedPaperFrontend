@@ -47,9 +47,10 @@ export class CartComponent implements OnInit {
     let decodedToken = jwtDecode(token) as Token;
     let dto =  {
       userId: decodedToken.id,
-      products: this.products
+      productsId: this.products.map(p => p.id)
     }
     const result = await this.cartService.createOrder(dto);
+    this.emptyCart()
     return result
   }
 }

@@ -51,7 +51,7 @@ export class CartService {
     this.productList.next(this.cartItemList);
   }
 
-  async createOrder(dto: {userId: any; products: any}) {
+  async createOrder(dto: {userId: any; productsId: any}) {
     const httpResult = await customAxios.post('/Order', dto)
     return httpResult.data
   }
