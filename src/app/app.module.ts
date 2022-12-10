@@ -34,6 +34,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CustomersProductsComponent } from './component/customers-products/customers-products.component';
 import { EditProductComponent } from './component/edit-product/edit-product.component';
+import { CartComponent } from './component/cart/cart.component';
 
 
 
@@ -48,7 +49,7 @@ const routes: Routes = [
 
   {path: 'myProducts', component: CustomersProductsComponent},
 
-
+  {path: 'cart', component: CartComponent},
 
   {path: '', redirectTo: 'login', pathMatch: "full"}]
 
@@ -66,7 +67,8 @@ const routes: Routes = [
     ProductListComponent,
     CustomersProductsComponent,
     EditProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
