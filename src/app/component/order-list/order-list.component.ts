@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-order-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
+  displayedColumns: any;
+  dataSource: MatTableDataSource<any>;
 
   constructor() { }
 
