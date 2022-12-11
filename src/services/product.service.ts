@@ -95,4 +95,8 @@ export class ProductService {
     const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingZ-A');
     return httpResult.data;
   }
+
+   getAllProductsByOrderId(orderId: number): Observable<any>{
+    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub/' + orderId);
+  }
 }
