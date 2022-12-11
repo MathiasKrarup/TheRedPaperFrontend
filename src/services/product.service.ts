@@ -97,6 +97,6 @@ export class ProductService {
   }
 
    getAllProductsByOrderId(orderId: number): Observable<any>{
-    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsFromSub/' + orderId);
+    return this.httpClient.get('https://localhost:7175/Product/GetAllProductsByOrderId/' + orderId);
   }
 }

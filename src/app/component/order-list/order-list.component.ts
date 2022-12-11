@@ -16,7 +16,7 @@ import {Users} from "../../../Interfaces/user";
 export class OrderListComponent implements AfterViewInit{
   displayedColumns: string[] = ['productName', 'description', 'price'];
   dataSource: MatTableDataSource<Product>;
-  selectedOrder!: any;
+  selectedOrder!: string;
   productList!: Product[]
   orderList!: Orders[]
 
@@ -24,14 +24,13 @@ export class OrderListComponent implements AfterViewInit{
   constructor(private orderservice: OrderService, private productservice: ProductService) { }
 
   async ngAfterViewInit() {
-    const products: Product[] = await this.productservice.getAllProducts();
-    this.dataSource = new MatTableDataSource(products);
     this.loadOrders()
   }
 
   onOrderSelected(selectedOrderId: any){
     this.productservice.getAllProductsByOrderId(selectedOrderId).subscribe(data => {
       this.productList = data
+      this.dataSource = new MatTableDataSource<Product>(data)
     })
   }
 
