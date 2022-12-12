@@ -14,7 +14,7 @@ import {Users} from "../../../Interfaces/user";
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements AfterViewInit{
-  displayedColumns: string[] = ['productName', 'description', 'price'];
+  displayedColumns: string[] = ['imageUrl','productName', 'description', 'price'];
   dataSource: MatTableDataSource<Product>;
   selectedOrder!: string;
   productList!: Product[]
