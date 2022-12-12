@@ -15,6 +15,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ProductListComponent implements OnInit {
 
+  keyword ='productName'
   subCategorylist: Subcategory[]
   categorylist!: Category[]
   productList!: Product[]
@@ -28,8 +29,6 @@ export class ProductListComponent implements OnInit {
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
 
   totalItem : number = 0;
-  notFoundTemplate: any;
-  itemTemplate: any;
   constructor(private http: ProductService, private dialog: MatDialog, private cartService : CartService) { }
 
   async ngOnInit(){
@@ -114,15 +113,22 @@ export class ProductListComponent implements OnInit {
   }
 
   search(event: any){
-    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.keyword = (event.target as HTMLInputElement).value;
     this.searching.next(this.searchTerm);
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
   }
 
   selectEvent(string: any) {
   }
 
   onChangeSearch($event: any) {
-
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searching.next(this.searchTerm);
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
   }
 
   onFocused($event: void) {

@@ -3,19 +3,28 @@
     <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search through all products">
   </div>
 </header>
-
+<div class="ng-autocomplete">
 <ng-autocomplete
+
   [data]="productList"
-  [searchKeyword]="searchKey"
-  placeholder="Enter the product Name"
+  [searchKeyword]="keyword"
+  placeholder="Enter the Product name"
   (selected)='selectEvent($event)'
-  (inputChanged)='onChangeSearch($event)'
+  (inputChanged)='search($event)'
   (inputFocused)='onFocused($event)'
-  historyIdentifier="countries"
+  historyIdentifier="products"
   [itemTemplate]="itemTemplate"
   [notFoundTemplate]="notFoundTemplate">
 </ng-autocomplete>
 
+  <ng-template #itemTemplate let-item>
+  <a [innerHTML]="item.productName"></a>
+  </ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+</ng-template>
+</div>
 
 <div class="navbar">
   <h1>List of products</h1>
