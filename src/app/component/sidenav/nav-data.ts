@@ -20,6 +20,13 @@ export const navbarData = [
    routeLink: 'myProducts',
    icon: 'fas fa-list',
    label: 'My products'
+  },
+
+  {
+    routeLink: 'orderlist',
+    icon: 'fas fa-credit-card',
+    label: 'My orders'
   }
+
 ];
 

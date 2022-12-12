@@ -8,6 +8,6 @@ export interface Product {
   description: string,
   price: number,
   productCondition: Condition,
-  user: Users
-
+  user: Users,
+  orderId?: number
 }
