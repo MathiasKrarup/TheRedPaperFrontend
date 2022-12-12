@@ -5,6 +5,7 @@ import {Product} from "../../../Interfaces/product";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import {Token} from "../../../Interfaces/token";
+import {OrderService} from "../../../services/order.service";
 
 export const customAxios = axios.create({
   baseURL: 'https://localhost:7175',
@@ -21,7 +22,7 @@ export class CartComponent implements OnInit {
 
   products : Product[];
   grandTotal !: number;
-  constructor(private cartService : CartService) { }
+  constructor(private cartService : CartService, private orderservice: OrderService) { }
 
   ngOnInit(): void {
     this.cartService.getProducts()
@@ -49,7 +50,7 @@ export class CartComponent implements OnInit {
       userId: decodedToken.id,
       productsId: this.products.map(p => p.id)
     }
-    const result = await this.cartService.createOrder(dto);
+    const result = await this.orderservice.createOrder(dto);
     this.emptyCart()
     return result
   }

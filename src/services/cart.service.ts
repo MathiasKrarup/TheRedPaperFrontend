@@ -15,15 +15,12 @@ export class CartService {
 
   constructor() { }
 
+  // Method used to get the list of products as Observable
   getProducts() {
    return this.productList.asObservable();
   }
 
-  setProduct(product : any) {
-    this.cartItemList.push(...product)
-    this.productList.next(product);
-  }
-
+  // Method used to add a product to the cart
   addToCart(product: any) {
     if (this.cartItemList.includes(product)){
       this.cartItemList.message = 'Product already exists!';
@@ -34,9 +31,9 @@ export class CartService {
     this.productList.next(this.cartItemList)
 
     this.getTotalPrice();
-    console.log(this.cartItemList)
   }
 
+  // Method used to get the total price of all the products in the cart
   getTotalPrice() : number{
     let grandTotal = 0
     this.cartItemList.map((a: any) => {
@@ -44,6 +41,7 @@ export class CartService {
     })
     return grandTotal
   }
+  // Method used to remove a product from the cart
   removeCartItem(product: any){
     this.cartItemList.map((a: any, index:any)=>{
       if (product.id=== a.id){
@@ -52,13 +50,9 @@ export class CartService {
     })
     this.productList.next(this.cartItemList);
   }
+  // Method used to remove all the products from the cart
   removeAllCart() {
     this.cartItemList = []
     this.productList.next(this.cartItemList);
-  }
-
-  async createOrder(dto: {userId: any; productsId: any}) {
-    const httpResult = await customAxios.post('/Order', dto)
-    return httpResult.data
   }
 }

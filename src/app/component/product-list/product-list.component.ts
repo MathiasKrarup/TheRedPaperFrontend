@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
 import {ProductDetailsComponent} from "../product-details/product-details.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -6,6 +6,7 @@ import {Category} from "../../../Interfaces/category";
 import {Subcategory} from "../../../Interfaces/subcategory";
 import {Product} from "../../../Interfaces/product";
 import {CartService} from "../../../services/cart.service";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-product-list',
@@ -21,6 +22,10 @@ export class ProductListComponent implements OnInit {
 
   selectedSubCategory!: string;
 
+  currentItemsToShow= [];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
 
   totalItem : number = 0;
@@ -29,6 +34,8 @@ export class ProductListComponent implements OnInit {
   async ngOnInit(){
     this.productList = await this.http.getAllProducts();
     this.loadCategories()
+
+    this.currentItemsToShow = this.productList.slice(0, 6)
 
     this.productList.forEach((a:any) => {
       Object.assign(a, {quantity:1,total:a.price});
@@ -104,5 +111,10 @@ export class ProductListComponent implements OnInit {
 
   addToCart(item: any) {
     this.cartService.addToCart(item);
+  }
+
+  onPageChange($event) {
+    this.currentItemsToShow = this.productList.slice($event.pageIndex*$event.pageSize,
+      $event.pageIndex*$event.pageSize + $event.pageSize);
   }
 }

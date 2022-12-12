@@ -47,15 +47,8 @@ export class CreateProductComponent implements OnInit {
     return this.infoForm.get('category');
   }
 
-  close() {
-
-
-  }
-
-
   async createProduct() {
     let token = localStorage.getItem('token');
-    console.log(token)
     if (!token)
       return console.log("There was no matching token found")
 
@@ -72,10 +65,7 @@ export class CreateProductComponent implements OnInit {
         subCategoryId: this.currentsubCategory,
         productConditionId: this.condition,
       }
-      console.log(this.condition);
       const result = await this.service.createProduct(dto);
-      console.log(result)
       await this.router.navigateByUrl('/mainview');
     }
-
 }

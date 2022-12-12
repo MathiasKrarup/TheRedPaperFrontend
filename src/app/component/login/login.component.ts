@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       }
   }
 
-  async createUser() {
+  async createCustomer() {
     let dto = {
       firstName: this.firstName,
       lastName: this.lastName,
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
       phoneNumber: this.phoneNumber,
       location: this.location
     }
-    const result = await this.http.createUser(dto);
-    console.log(result)
+    const result = await this.http.createCustomer(dto);
+    alert("You succesfully created a new account");
   }
 }
