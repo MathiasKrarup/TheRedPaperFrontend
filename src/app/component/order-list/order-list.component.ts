@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Orders} from "../../../Interfaces/order";
 import {OrderService} from "../../../services/order.service";
@@ -7,6 +7,7 @@ import {Token} from "../../../Interfaces/token";
 import {ProductService} from "../../../services/product.service";
 import {Product} from "../../../Interfaces/product";
 import {Users} from "../../../Interfaces/user";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-order-list',
@@ -19,6 +20,8 @@ export class OrderListComponent implements AfterViewInit{
   selectedOrder!: string;
   productList!: Product[]
   orderList!: Orders[]
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
 
   constructor(private orderservice: OrderService, private productservice: ProductService) { }
@@ -31,6 +34,7 @@ export class OrderListComponent implements AfterViewInit{
     this.productservice.getAllProductsByOrderId(selectedOrderId).subscribe(data => {
       this.productList = data
       this.dataSource = new MatTableDataSource<Product>(data)
+      this.dataSource.paginator = this.paginator;
     })
   }
 
