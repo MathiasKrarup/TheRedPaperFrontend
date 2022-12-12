@@ -113,14 +113,14 @@ export class ProductListComponent implements OnInit {
   }
 
   search(event: any){
-    this.keyword = (event.target as HTMLInputElement).value;
+    this.searchTerm = (event.target as HTMLInputElement).value;
     this.searching.next(this.searchTerm);
-    this.searching.subscribe(val => {
-      this.searchKey = val;
-    })
   }
 
   selectEvent(string: any) {
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
   }
 
   onChangeSearch($event: any) {
@@ -131,7 +131,6 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-  onFocused($event: void) {
-
+  onFocused() {
   }
 }

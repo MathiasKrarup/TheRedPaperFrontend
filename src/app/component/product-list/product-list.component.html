@@ -7,16 +7,17 @@
 <ng-autocomplete
 
   [data]="productList"
-  [searchKeyword]="keyword"
+  [searchKeyword]= "keyword"
   placeholder="Enter the Product name"
-  (selected)='selectEvent($event)'
+  (selected)='search($event)'
   (inputChanged)='search($event)'
-  (inputFocused)='onFocused($event)'
+  (inputFocused)='onFocused()'
+  [customFilter]=""
   historyIdentifier="products"
   [itemTemplate]="itemTemplate"
   [notFoundTemplate]="notFoundTemplate">
+  <input type="text" ng-autocomplete="result in search($viewValue) track by result.id">
 </ng-autocomplete>
-
   <ng-template #itemTemplate let-item>
   <a [innerHTML]="item.productName"></a>
   </ng-template>
