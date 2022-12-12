@@ -25,8 +25,14 @@ export class CartService {
   }
 
   addToCart(product: any) {
-    this.cartItemList.push(product)
+    if (this.cartItemList.includes(product)){
+      this.cartItemList.message = 'Product already exists!';
+    }
+    else {
+      this.cartItemList.push(product)
+    }
     this.productList.next(this.cartItemList)
+
     this.getTotalPrice();
     console.log(this.cartItemList)
   }
