@@ -6,6 +6,7 @@ import {Category} from "../../../Interfaces/category";
 import {Subcategory} from "../../../Interfaces/subcategory";
 import {Product} from "../../../Interfaces/product";
 import {CartService} from "../../../services/cart.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-product-list',
@@ -21,9 +22,14 @@ export class ProductListComponent implements OnInit {
 
   selectedSubCategory!: string;
 
+  searchKey: string = "";
+  searchTerm: string = "";
+  searching = new BehaviorSubject<string>("");
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
 
   totalItem : number = 0;
+  notFoundTemplate: any;
+  itemTemplate: any;
   constructor(private http: ProductService, private dialog: MatDialog, private cartService : CartService) { }
 
   async ngOnInit(){
@@ -37,6 +43,9 @@ export class ProductListComponent implements OnInit {
       .subscribe(res=>{
         this.totalItem = res.length;
       })
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
   }
 
 
@@ -100,9 +109,23 @@ export class ProductListComponent implements OnInit {
       console.log(data)
     })
   }
-
-
   addToCart(item: any) {
     this.cartService.addToCart(item);
+  }
+
+  search(event: any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searching.next(this.searchTerm);
+  }
+
+  selectEvent(string: any) {
+  }
+
+  onChangeSearch($event: any) {
+
+  }
+
+  onFocused($event: void) {
+
   }
 }
