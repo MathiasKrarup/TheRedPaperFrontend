@@ -45,9 +45,9 @@ export class CustomersProductsComponent implements OnInit {
         item: item
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
       if (result != null) {
-        this.productList[this.productList.findIndex(item => item.id == result.id)] = result;
+        this.currentItemsToShow[this.currentItemsToShow.findIndex(item => item.id == result.id)] = result;
       }
     });
   }

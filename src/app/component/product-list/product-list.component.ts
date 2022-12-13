@@ -67,44 +67,48 @@ export class ProductListComponent implements OnInit {
   OnSubCategorySelected(selectedSubId: any){
   this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
   this.productList = data
-  console.log(data)
-})
+    this.currentItemsToShow = this.productList
+  })
 
 }
   async sortingDefault(){
     this.productList = await this.http.getAllProducts();
+    this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'default';
   }
 
  async sortingByHighToLow(){
    this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
-     this.sortby = 'htl';
+   this.currentItemsToShow = this.productList.slice(0, 6)
+   this.sortby = 'htl';
   }
 
   async sortingByLowToHigh(){
     this.productList.sort((a, b) => (a.price < b.price ? -1 : 1));
+    this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'lth';
   }
 
   async sortingByAToZ(){
     this.productList.sort((a, b) => (a.productName < b.productName ? -1 : 1));
+    this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'atz';
   }
 
   async sortingByZToA(){
     this.productList.sort((a, b) => (a.productName > b.productName ? -1 : 1));
+    this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'zta';
   }
   private loadCategories(){
     this.http.getCategoriesObservable().subscribe(data => {
       this.categorylist = data
-      console.log(data)
+
     })
   }
   onCategorySelected(selectedCategoryId: any){
     this.http.getSubCategoriesFromCategory(selectedCategoryId).subscribe(data => {
       this.subCategorylist = data
-      console.log(data)
     })
   }
 

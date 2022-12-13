@@ -7,6 +7,8 @@ import {userService} from "../../../services/user.service";
 import {Users} from "../../../Interfaces/user";
 import {DialogComponent} from "../dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import jwtDecode from "jwt-decode";
+import {Token} from "../../../Interfaces/token";
 
 
 @Component({
@@ -29,10 +31,10 @@ export class AdminviewComponent implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    const users: Users[] = await this.service.getUsers();
-    this.dataSource = new MatTableDataSource(users);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+      const users: Users[] = await this.service.getUsers();
+      this.dataSource = new MatTableDataSource(users);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
   }
 
 

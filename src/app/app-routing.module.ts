@@ -10,14 +10,15 @@ import {AdminviewComponent} from "./component/adminview/adminview.component";
 import {CreateProductComponent} from "./component/create-product/create-product.component";
 import {ProductListComponent} from "./component/product-list/product-list.component";
 import {AuthguardService} from "../services/authguard.service";
+import {RoleguardService} from "../services/roleguard.service";
 
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'createSales', component: CreateProductComponent},
-  {path: 'adminview', component: AdminviewComponent, canActivate: [AuthguardService]},
-  {path: 'mainview', component: ProductListComponent}
-
+  {path: 'createSales', component: CreateProductComponent, canActivate: [AuthguardService]},
+  {path: 'adminview', component: AdminviewComponent, canActivate: [RoleguardService]},
+  {path: 'mainview', component: ProductListComponent, canActivate: [AuthguardService]},
+  {path: '', redirectTo: 'login', pathMatch: "full"}
 ];
 
 @NgModule({
