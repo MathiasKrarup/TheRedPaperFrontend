@@ -68,8 +68,7 @@
 
 <div class="container">
   <div class="row">
-    <ng-container *ngFor="let item of currentItemsToShow">
-    <ng-container *ngFor="let item of productList | filter:searchKey: 'productName'" >
+    <ng-container *ngFor="let item of currentItemsToShow | filter:searchKey: 'productName'">
       <div class="card col-md-3">
         <img src="{{item.imageUrl}}" alt="" (click)="openDialog(item)">
         <p><strong>Product name: </strong>{{item.productName}} </p>
