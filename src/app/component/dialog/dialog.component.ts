@@ -45,7 +45,6 @@ export class DialogComponent implements OnInit {
     this.lastName = data.row.lastName;
     this.username = data.row.username;
     this.email = data.row.email;
-    this.password = data.row.password;
     this.location = data.row.location;
     this.birthDay = data.row.birthDay;
   }
@@ -72,7 +71,6 @@ export class DialogComponent implements OnInit {
       lastName: this.lastName,
       username: this.username,
       email: this.email,
-      password: this.password,
       location: this.location,
       phoneNumber: this.phoneNumber,
       birthDay: this.birthDay
