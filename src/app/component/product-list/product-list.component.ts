@@ -6,6 +6,7 @@ import {Category} from "../../../Interfaces/category";
 import {Subcategory} from "../../../Interfaces/subcategory";
 import {Product} from "../../../Interfaces/product";
 import {CartService} from "../../../services/cart.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-product-list',
@@ -14,6 +15,7 @@ import {CartService} from "../../../services/cart.service";
 })
 export class ProductListComponent implements OnInit {
 
+  keyword ='productName'
   subCategorylist: Subcategory[]
   categorylist!: Category[]
   productList!: Product[]
@@ -21,6 +23,9 @@ export class ProductListComponent implements OnInit {
 
   selectedSubCategory!: string;
 
+  searchKey: string = "";
+  searchTerm: string = "";
+  searching = new BehaviorSubject<string>("");
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
 
   totalItem : number = 0;
@@ -37,6 +42,9 @@ export class ProductListComponent implements OnInit {
       .subscribe(res=>{
         this.totalItem = res.length;
       })
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
   }
 
 
@@ -100,9 +108,30 @@ export class ProductListComponent implements OnInit {
       console.log(data)
     })
   }
-
-
   addToCart(item: any) {
     this.cartService.addToCart(item);
+  }
+
+  search(event: any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searching.next(this.searchTerm);
+    return this.searchTerm;
+  }
+
+  selectEvent(string: any) {
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
+  }
+
+  onChangeSearch($event: any) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searching.next(this.searchTerm);
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
+  }
+
+  onFocused() {
   }
 }

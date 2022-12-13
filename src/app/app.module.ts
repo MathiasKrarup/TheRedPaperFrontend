@@ -36,6 +36,9 @@ import { CustomersProductsComponent } from './component/customers-products/custo
 import { EditProductComponent } from './component/edit-product/edit-product.component';
 import { CartComponent } from './component/cart/cart.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
+import { FilterPipe } from './component/PipeFilter/filter.pipe';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EmailComponent } from './component/email/email.component';
 
 
 
@@ -72,7 +75,9 @@ const routes: Routes = [
     EditProductComponent,
     ProductDetailsComponent,
     CartComponent,
-    OrderListComponent
+    OrderListComponent,
+    FilterPipe,
+    EmailComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -97,7 +102,8 @@ const routes: Routes = [
     MatGridListModule,
     MatListModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    AutocompleteLibModule
   ],
   entryComponents: [DialogComponent],
 
