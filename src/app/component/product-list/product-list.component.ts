@@ -7,7 +7,6 @@ import {Subcategory} from "../../../Interfaces/subcategory";
 import {Product} from "../../../Interfaces/product";
 import {CartService} from "../../../services/cart.service";
 import {MatPaginator} from "@angular/material/paginator";
-
 import {BehaviorSubject} from "rxjs";
 
 @Component({
@@ -17,35 +16,37 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ProductListComponent implements OnInit {
 
-  keyword ='productName'
+  keyword = 'productName'
   subCategorylist: Subcategory[]
   categorylist!: Category[]
   productList!: Product[]
   selectedCategory!: string;
 
   selectedSubCategory!: string;
-  currentItemsToShow= [];
+  currentItemsToShow = [];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   searchKey: string = "";
   searchTerm: string = "";
   searching = new BehaviorSubject<string>("");
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
-  totalItem : number = 0;
-  constructor(private http: ProductService, private dialog: MatDialog, private cartService : CartService) { }
+  totalItem: number = 0;
 
-  async ngOnInit(){
+  constructor(private http: ProductService, private dialog: MatDialog, private cartService: CartService) {
+  }
+
+  async ngOnInit() {
     this.productList = await this.http.getAllProducts();
     this.loadCategories()
 
     this.currentItemsToShow = this.productList.slice(0, 6)
 
-    this.productList.forEach((a:any) => {
-      Object.assign(a, {quantity:1,total:a.price});
+    this.productList.forEach((a: any) => {
+      Object.assign(a, {quantity: 1, total: a.price});
     })
     this.cartService.getProducts()
-      .subscribe(res=>{
+      .subscribe(res => {
         this.totalItem = res.length;
       })
     this.searching.subscribe(val => {
@@ -54,98 +55,90 @@ export class ProductListComponent implements OnInit {
   }
 
 
-  openDialog(item: any){
+  openDialog(item: any) {
     let dialogRef = this.dialog.open(ProductDetailsComponent, {
       data: {
         products: this.productList,
-        item: item}});
-    dialogRef.afterClosed().subscribe(result=>{
+        item: item
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
       console.log("Dialog closed");
-      if (result != null){
+      if (result != null) {
         this.productList[this.productList.findIndex(item => item.id == result.id)] = result;
       }
     });
   }
 
-  getProductById(id:number){
+  getProductById(id: number) {
     this.http.getProductById(id);
   }
 
-  OnSubCategorySelected(selectedSubId: any){
-  this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
-  this.productList = data
-    this.currentItemsToShow = this.productList
-  })
+  OnSubCategorySelected(selectedSubId: any) {
+    this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
+      this.productList = data
+      this.currentItemsToShow = this.productList
+    })
 
-}
-  async sortingDefault(){
+  }
+
+  async sortingDefault() {
     this.productList = await this.http.getAllProducts();
     this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'default';
   }
 
- async sortingByHighToLow(){
-   this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
-   this.currentItemsToShow = this.productList.slice(0, 6)
-   this.sortby = 'htl';
+  async sortingByHighToLow() {
+    this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
+    this.currentItemsToShow = this.productList.slice(0, 6)
+    this.sortby = 'htl';
   }
 
-  async sortingByLowToHigh(){
+  async sortingByLowToHigh() {
     this.productList.sort((a, b) => (a.price < b.price ? -1 : 1));
     this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'lth';
   }
 
-  async sortingByAToZ(){
+  async sortingByAToZ() {
     this.productList.sort((a, b) => (a.productName < b.productName ? -1 : 1));
     this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'atz';
   }
 
-  async sortingByZToA(){
+  async sortingByZToA() {
     this.productList.sort((a, b) => (a.productName > b.productName ? -1 : 1));
     this.currentItemsToShow = this.productList.slice(0, 6)
     this.sortby = 'zta';
   }
-  private loadCategories(){
+
+  private loadCategories() {
     this.http.getCategoriesObservable().subscribe(data => {
       this.categorylist = data
 
     })
   }
-  onCategorySelected(selectedCategoryId: any){
+
+  onCategorySelected(selectedCategoryId: any) {
     this.http.getSubCategoriesFromCategory(selectedCategoryId).subscribe(data => {
       this.subCategorylist = data
     })
   }
+
   addToCart(item: any) {
     this.cartService.addToCart(item);
   }
 
   onPageChange($event) {
-    this.currentItemsToShow = this.productList.slice($event.pageIndex*$event.pageSize,
-      $event.pageIndex*$event.pageSize + $event.pageSize);
-
-  search(event: any){
-    this.searchTerm = (event.target as HTMLInputElement).value;
-    this.searching.next(this.searchTerm);
-    return this.searchTerm;
+    this.currentItemsToShow = this.productList.slice($event.pageIndex * $event.pageSize,
+      $event.pageIndex * $event.pageSize + $event.pageSize);
   }
 
-  selectEvent(string: any) {
-    this.searching.subscribe(val => {
-      this.searchKey = val;
-    })
+    search(event:any)
+    {
+      this.searchTerm = (event.target as HTMLInputElement).value;
+      this.searching.next(this.searchTerm);
+      return this.searchTerm;
+    }
   }
 
-  onChangeSearch($event: any) {
-    this.searchTerm = (event.target as HTMLInputElement).value;
-    this.searching.next(this.searchTerm);
-    this.searching.subscribe(val => {
-      this.searchKey = val;
-    })
-  }
-
-  onFocused() {
-  }
-}
