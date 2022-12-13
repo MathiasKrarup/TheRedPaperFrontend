@@ -62,10 +62,6 @@ export class SidenavComponent implements OnInit {
     this.router.navigate(['/login']).then(() =>{
       alert("You're now logged out")
       localStorage.clear();
-      this.service.firstName = undefined;
-      this.service.lastName = undefined;
-      this.service.username = undefined;
-      this.service.role = undefined;
     })
   }
 }

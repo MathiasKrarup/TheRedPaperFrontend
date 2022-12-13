@@ -68,6 +68,7 @@
 
 <div class="container">
   <div class="row">
+    <ng-container *ngFor="let item of currentItemsToShow">
     <ng-container *ngFor="let item of productList | filter:searchKey: 'productName'" >
       <div class="card col-md-3">
         <img src="{{item.imageUrl}}" alt="" (click)="openDialog(item)">
@@ -77,6 +78,12 @@
         <button class="btn2" type="button" (click)="addToCart(item)">Tilføj til ordre</button>
       </div>
     </ng-container>
+    <mat-paginator class="mat-elevation-z8"
+                   [length]="15"
+                   [pageSize]="6"
+                   [pageSizeOptions]="[3, 6, 9]"
+                   (page)="onPageChange($event)"
+    ></mat-paginator>
   </div>
 </div>
 

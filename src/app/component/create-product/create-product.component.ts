@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import jwtDecode from "jwt-decode";
 import {Token} from "../../../Interfaces/token";
 import {ProductService} from "../../../services/product.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 @Component({
@@ -47,35 +48,25 @@ export class CreateProductComponent implements OnInit {
     return this.infoForm.get('category');
   }
 
-  close() {
-
-
-  }
-
-
   async createProduct() {
     let token = localStorage.getItem('token');
-    console.log(token)
     if (!token)
       return console.log("There was no matching token found")
 
     let decodedToken = jwtDecode(token) as Token;
 
 
-      let dto = {
-        userId: decodedToken.id,
-        productName: this.productName,
-        imageUrl: this.imageUrl,
-        price: this.price,
-        productCondition: this.condition,
-        description: this.description,
-        subCategoryId: this.currentsubCategory,
-        productConditionId: this.condition,
-      }
-      console.log(this.condition);
-      const result = await this.service.createProduct(dto);
-      console.log(result)
+    let dto = {
+      userId: decodedToken.id,
+      productName: this.productName,
+      imageUrl: this.imageUrl,
+      price: this.price,
+      productCondition: this.condition,
+      description: this.description,
+      subCategoryId: this.currentsubCategory,
+      productConditionId: this.condition,
+    }
+    const result = await this.service.createProduct(dto);
       await this.router.navigateByUrl('/mainview');
     }
-
 }

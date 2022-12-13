@@ -7,6 +7,8 @@ import {userService} from "../../../services/user.service";
 import {Users} from "../../../Interfaces/user";
 import {DialogComponent} from "../dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import jwtDecode from "jwt-decode";
+import {Token} from "../../../Interfaces/token";
 import axios from "axios";
 
 export const customAxios = axios.create({

@@ -18,7 +18,6 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
 import { CreateProductComponent } from './component/create-product/create-product.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -28,7 +27,7 @@ import { ProductListComponent } from './component/product-list/product-list.comp
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatListModule} from "@angular/material/list";
-import {AuthguardService} from "../services/authguard.service";
+import {RoleguardService} from "../services/roleguard.service";
 import { ProductDetailsComponent } from './component/product-details/product-details.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
@@ -36,6 +35,7 @@ import { CustomersProductsComponent } from './component/customers-products/custo
 import { EditProductComponent } from './component/edit-product/edit-product.component';
 import { CartComponent } from './component/cart/cart.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
+import {AuthguardService} from "../services/authguard.service";
 import { FilterPipe } from './component/PipeFilter/filter.pipe';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { EmailComponent } from './component/email/email.component';
@@ -45,17 +45,17 @@ import { EmailComponent } from './component/email/email.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
-  {path: 'createSales', component: CreateProductComponent},
+  {path: 'createSales', component: CreateProductComponent, canActivate: [AuthguardService]},
 
-  {path: 'adminview', component: AdminviewComponent, canActivate: [AuthguardService]},
+  {path: 'adminview', component: AdminviewComponent, canActivate: [RoleguardService]},
 
-  {path: 'mainview', component: ProductListComponent},
+  {path: 'mainview', component: ProductListComponent, canActivate: [AuthguardService]},
 
-  {path: 'myProducts', component: CustomersProductsComponent},
+  {path: 'myProducts', component: CustomersProductsComponent, canActivate: [AuthguardService]},
 
-  {path: 'cart', component: CartComponent},
+  {path: 'cart', component: CartComponent, canActivate: [AuthguardService]},
 
-  {path: 'orderlist', component: OrderListComponent},
+  {path: 'orderlist', component: OrderListComponent, canActivate: [AuthguardService]},
 
   {path: '', redirectTo: 'login', pathMatch: "full"}]
 
