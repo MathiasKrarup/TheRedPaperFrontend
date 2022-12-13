@@ -9,13 +9,21 @@ import {DialogComponent} from "../dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import jwtDecode from "jwt-decode";
 import {Token} from "../../../Interfaces/token";
+import axios from "axios";
 
-
+export const customAxios = axios.create({
+  baseURL: 'https://localhost:7175',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+})
 @Component({
   selector: 'app-adminview',
   templateUrl: './adminview.component.html',
   styleUrls: ['./adminview.component.scss']
 })
+
+
 export class AdminviewComponent implements AfterViewInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'action'];
   dataSource: MatTableDataSource<Users>;
@@ -31,10 +39,12 @@ export class AdminviewComponent implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-      const users: Users[] = await this.service.getUsers();
-      this.dataSource = new MatTableDataSource(users);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    localStorage.getItem('token');
+    console.log(    localStorage.getItem('token'))
+    const users: Users[] = await this.service.getUsers();
+    this.dataSource = new MatTableDataSource(users);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 

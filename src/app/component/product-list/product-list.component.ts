@@ -8,6 +8,8 @@ import {Product} from "../../../Interfaces/product";
 import {CartService} from "../../../services/cart.service";
 import {MatPaginator} from "@angular/material/paginator";
 
+import {BehaviorSubject} from "rxjs";
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -15,19 +17,21 @@ import {MatPaginator} from "@angular/material/paginator";
 })
 export class ProductListComponent implements OnInit {
 
+  keyword ='productName'
   subCategorylist: Subcategory[]
   categorylist!: Category[]
   productList!: Product[]
   selectedCategory!: string;
 
   selectedSubCategory!: string;
-
   currentItemsToShow= [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  searchKey: string = "";
+  searchTerm: string = "";
+  searching = new BehaviorSubject<string>("");
   sortby: 'default' | 'htl' | 'lth' | 'atz' | 'zta' = 'default'
-
   totalItem : number = 0;
   constructor(private http: ProductService, private dialog: MatDialog, private cartService : CartService) { }
 
@@ -44,6 +48,9 @@ export class ProductListComponent implements OnInit {
       .subscribe(res=>{
         this.totalItem = res.length;
       })
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
   }
 
 
@@ -111,8 +118,6 @@ export class ProductListComponent implements OnInit {
       this.subCategorylist = data
     })
   }
-
-
   addToCart(item: any) {
     this.cartService.addToCart(item);
   }
@@ -120,5 +125,27 @@ export class ProductListComponent implements OnInit {
   onPageChange($event) {
     this.currentItemsToShow = this.productList.slice($event.pageIndex*$event.pageSize,
       $event.pageIndex*$event.pageSize + $event.pageSize);
+
+  search(event: any){
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searching.next(this.searchTerm);
+    return this.searchTerm;
+  }
+
+  selectEvent(string: any) {
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
+  }
+
+  onChangeSearch($event: any) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searching.next(this.searchTerm);
+    this.searching.subscribe(val => {
+      this.searchKey = val;
+    })
+  }
+
+  onFocused() {
   }
 }

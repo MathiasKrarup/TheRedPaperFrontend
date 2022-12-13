@@ -1,8 +1,24 @@
-<mat-form-field class="searchbar">
-  <mat-label></mat-label>
-  <mat-icon>search</mat-icon>
-  <input matInput placeholder="You can search for a specific user here" #input>
-</mat-form-field>
+<div class="ng-autocomplete">
+<ng-autocomplete
+  [data]="productList"
+  [searchKeyword]= "keyword"
+  placeholder="Enter the Product name"
+  (keyup)="search($event)"
+  (click)="search($event)"
+  (selected)='search($event)'
+  historyIdentifier="products"
+  [itemTemplate]="itemTemplate"
+  [notFoundTemplate]="notFoundTemplate">
+  <input type="text" ng-autocomplete="result in search($viewValue) track by result.id">
+</ng-autocomplete>
+  <ng-template #itemTemplate let-item>
+  <a  [innerHTML]="item.productName"></a>
+  </ng-template>
+
+<ng-template #notFoundTemplate let-notFound>
+  <div [innerHTML]="notFound"></div>
+</ng-template>
+</div>
 
 <div class="navbar">
   <h1>List of products</h1>
@@ -53,6 +69,7 @@
 <div class="container">
   <div class="row">
     <ng-container *ngFor="let item of currentItemsToShow">
+    <ng-container *ngFor="let item of productList | filter:searchKey: 'productName'" >
       <div class="card col-md-3">
         <img src="{{item.imageUrl}}" alt="" (click)="openDialog(item)">
         <p><strong>Product name: </strong>{{item.productName}} </p>

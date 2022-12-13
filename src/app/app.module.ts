@@ -18,7 +18,6 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
 import { CreateProductComponent } from './component/create-product/create-product.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -37,6 +36,9 @@ import { EditProductComponent } from './component/edit-product/edit-product.comp
 import { CartComponent } from './component/cart/cart.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
 import {AuthguardService} from "../services/authguard.service";
+import { FilterPipe } from './component/PipeFilter/filter.pipe';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EmailComponent } from './component/email/email.component';
 
 
 
@@ -73,7 +75,9 @@ const routes: Routes = [
     EditProductComponent,
     ProductDetailsComponent,
     CartComponent,
-    OrderListComponent
+    OrderListComponent,
+    FilterPipe,
+    EmailComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -98,7 +102,8 @@ const routes: Routes = [
     MatGridListModule,
     MatListModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    AutocompleteLibModule
   ],
   entryComponents: [DialogComponent],
 
