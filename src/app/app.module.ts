@@ -38,6 +38,7 @@ import { CartComponent } from './component/cart/cart.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
 import { FilterPipe } from './component/PipeFilter/filter.pipe';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EmailComponent } from './component/email/email.component';
 
 
 
@@ -75,7 +76,8 @@ const routes: Routes = [
     ProductDetailsComponent,
     CartComponent,
     OrderListComponent,
-    FilterPipe
+    FilterPipe,
+    EmailComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -1,25 +1,18 @@
-<header>
-  <div class="form-group">
-    <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search through all products">
-  </div>
-</header>
 <div class="ng-autocomplete">
 <ng-autocomplete
-
   [data]="productList"
   [searchKeyword]= "keyword"
   placeholder="Enter the Product name"
+  (keyup)="search($event)"
+  (click)="search($event)"
   (selected)='search($event)'
-  (inputChanged)='search($event)'
-  (inputFocused)='onFocused()'
-  [customFilter]=""
   historyIdentifier="products"
   [itemTemplate]="itemTemplate"
   [notFoundTemplate]="notFoundTemplate">
   <input type="text" ng-autocomplete="result in search($viewValue) track by result.id">
 </ng-autocomplete>
   <ng-template #itemTemplate let-item>
-  <a [innerHTML]="item.productName"></a>
+  <a  [innerHTML]="item.productName"></a>
   </ng-template>
 
 <ng-template #notFoundTemplate let-notFound>
