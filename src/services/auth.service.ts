@@ -27,4 +27,10 @@ export class AuthService {
     const httpResult = await customAxios.post<any>('/Auth/RegisterUser', dto)
     return httpResult.data;
   }
+
+  // Service method to update an admin or user password
+  async updatePassword(id: any, dto: {password: string;}) {
+    const result = await customAxios.put('/Auth/UpdatePassword/'+id, dto);
+    return result.data;
+  }
 }

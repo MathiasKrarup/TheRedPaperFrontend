@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from "@angular/router";
-import { MainviewComponent } from './component/mainview/mainview.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { BodyComponent } from './component/body/body.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -39,6 +38,7 @@ import {AuthguardService} from "../services/authguard.service";
 import { FilterPipe } from './component/PipeFilter/filter.pipe';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { EmailComponent } from './component/email/email.component';
+import { EditPasswordComponent } from './component/edit-password/edit-password.component';
 
 
 
@@ -64,7 +64,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    MainviewComponent,
     SidenavComponent,
     BodyComponent,
     AdminviewComponent,
@@ -77,7 +76,8 @@ const routes: Routes = [
     CartComponent,
     OrderListComponent,
     FilterPipe,
-    EmailComponent
+    EmailComponent,
+    EditPasswordComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

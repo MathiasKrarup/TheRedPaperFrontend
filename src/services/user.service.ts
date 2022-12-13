@@ -30,7 +30,7 @@ export class userService {
   }
 
   // Method used to update a user
-  async updateUser(id: any, dto: {firstName: string; lastName: string; username: string; password: string;
+  async updateUser(id: any, dto: {firstName: string; lastName: string; username: string;
   email: string; location: string}) {
     const result = await customAxios.put('/User/Edit/'+id, dto);
     return result.data;

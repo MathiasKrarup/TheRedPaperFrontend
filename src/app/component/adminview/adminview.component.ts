@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import jwtDecode from "jwt-decode";
 import {Token} from "../../../Interfaces/token";
 import axios from "axios";
+import {EditPasswordComponent} from "../edit-password/edit-password.component";
 
 export const customAxios = axios.create({
   baseURL: 'https://localhost:7175',
@@ -43,6 +44,7 @@ export class AdminviewComponent implements AfterViewInit {
     console.log(    localStorage.getItem('token'))
     const users: Users[] = await this.service.getUsers();
     this.dataSource = new MatTableDataSource(users);
+    console.log(users)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -66,6 +68,20 @@ export class AdminviewComponent implements AfterViewInit {
 
   editUser(row: any) {
     const data = this.dialog.open(DialogComponent, {
+      data: {
+        users: this.userList,
+        row: row
+      }
+    });
+    data.afterClosed().subscribe(async result => {
+      if (result != null) {
+        this.dataSource = new MatTableDataSource(await this.service.getUsers());
+      }
+    });
+  }
+
+  updatePassword(row) {
+    const data = this.dialog.open(EditPasswordComponent, {
       data: {
         users: this.userList,
         row: row
