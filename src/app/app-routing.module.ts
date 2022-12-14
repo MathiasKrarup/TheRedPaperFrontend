@@ -11,6 +11,7 @@ import {CreateProductComponent} from "./component/create-product/create-product.
 import {ProductListComponent} from "./component/product-list/product-list.component";
 import {AuthguardService} from "../services/authguard.service";
 import {RoleguardService} from "../services/roleguard.service";
+import {EmailComponent} from "./component/email/email.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'createSales', component: CreateProductComponent, canActivate: [AuthguardService]},
   {path: 'adminview', component: AdminviewComponent, canActivate: [RoleguardService]},
   {path: 'mainview', component: ProductListComponent, canActivate: [AuthguardService]},
+  {path: 'sendmail', component: EmailComponent},
   {path: '', redirectTo: 'login', pathMatch: "full"}
 ];
 

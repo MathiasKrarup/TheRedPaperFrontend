@@ -1,23 +1,22 @@
 <div class="container">
   <form action="action_page.php">
 
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="country">Country</label>
-    <select id="country" name="country">
-      <option value="Report a bug">Australia</option>
-      <option value="Report another customer on the website">Canada</option>
-      <option value="Other">USA</option>
-    </select>
+    <label for="email">Email</label>
+    <input [(ngModel)]="from" type="text" id="email" name="Email" placeholder="Your email is..">
 
     <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    <input [(ngModel)]="subject" type="text" id="Subject" name="subject" placeholder="Your subject matter is...">
 
-    <input type="submit" value="Submit">
+    <label for="country">Issue</label>
+    <select [(ngModel)]="issue" id="country" name="country">
+      <option value="Report a bug">Report a bug</option>
+      <option value="Report another customer on the website">Report another customer on the website</option>
+      <option value="Other">Other</option>
+    </select>
 
+    <label for="Message">Message</label>
+    <textarea [(ngModel)]="body" id="Message" name="Message" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input (click)="createEmail()" type="submit" value="Submit">
   </form>
 </div>
