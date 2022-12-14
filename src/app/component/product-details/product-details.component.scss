@@ -5,39 +5,27 @@
 }
 
 .wrapper {
-  width: auto;
-  height: auto;
-  border: 3px solid green;
+  border: 3px solid black;
   padding: 10px;
   margin-top: 50px;
 }
 
-.img{
-
+#img {
+  width: 400px;
+  height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
 }
 
-.btn1{
-  background-color: forestgreen;
-  border-radius: 1.5rem / 100%;
-  color: white;
-  margin-top: 25px;
-  margin-left: 25%;
-
+.productDetails {
+  font-size: 20px;
+  font-family: FontAwesome, serif;
+  margin-left: 100px !important;
+  margin-top: 125px !important;
 }
 
-.row wrap{
-  width: auto;
-  height: auto;
-}
-
-.btn2{
-  background-color: forestgreen;
-  border-radius: 1.5rem / 100%;
-  color: white;
-  margin-top: 25px;
-  margin-left: 25%;
-}
-
-.labelCss{
-
+.title {
+  font-family: "Arial Black", serif;
+  font-size: 24px !important;
 }
