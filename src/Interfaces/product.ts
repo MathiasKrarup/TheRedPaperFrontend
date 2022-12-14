@@ -10,4 +10,5 @@ export interface Product {
   productCondition: Condition,
   user: Users,
   orderId?: number
+  isSold: boolean
 }

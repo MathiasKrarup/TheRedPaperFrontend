@@ -78,3 +78,13 @@ h1 {
   background: #FE0944;
   color: white;
 }
+
+.disable:hover{
+  cursor: not-allowed;
+}
+.disable:active{
+  pointer-events: none;
+}
+mat-icon.disable {
+  filter:opacity(0.5);
+}
