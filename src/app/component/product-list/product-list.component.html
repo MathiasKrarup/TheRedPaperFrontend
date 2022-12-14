@@ -1,5 +1,5 @@
 <div class="ng-autocomplete">
-<ng-autocomplete
+  <ng-autocomplete
   [data]="productList"
   [searchKeyword]= "keyword"
   placeholder="Enter the Product name"
@@ -25,9 +25,9 @@
   <mat-form-field class="category">
     <mat-label>Category</mat-label>
     <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="onCategorySelected($event)">
-      <mat-option *ngFor="let category of categorylist" [value]="category.id">
+      <strong><mat-option *ngFor="let category of categorylist"  [value]="category.id" >
         {{category.categoryName}}
-      </mat-option>
+      </mat-option></strong>
     </mat-select>
 
   </mat-form-field>
@@ -37,9 +37,9 @@
 
     <mat-label class="dropdownLabel">SubCategory</mat-label>
     <mat-select [(ngModel)]="selectedSubCategory" (ngModelChange)="OnSubCategorySelected($event)">
-      <mat-option *ngFor="let subCategory of subCategorylist" [value]="subCategory.id" class="selected">
+      <strong><mat-option *ngFor="let subCategory of subCategorylist" [value]="subCategory.id" class="selected">
         {{subCategory.subName}}
-      </mat-option>
+      </mat-option></strong>
     </mat-select>
   </mat-form-field>
 
@@ -48,8 +48,6 @@
     <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
   </button>
 </div>
-
-
 
 <div class="my-container mx-auto border border-dark">
   <mat-toolbar class="mx-auto">
@@ -74,7 +72,7 @@
         <p><strong>Product name: </strong>{{item.productName}} </p>
         <p><strong>Price:</strong> {{item.price}}kr.</p>
         <p><strong>Description:</strong>{{item.description}}</p>
-        <button class="btn2" type="button" (click)="addToCart(item)">Tilføj til ordre</button>
+        <button id="addBtn" type="button" (click)="addToCart(item)">Add to cart</button>
       </div>
     </ng-container>
     <mat-paginator class="mat-elevation-z8"
