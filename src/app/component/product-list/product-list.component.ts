@@ -136,9 +136,12 @@ export class ProductListComponent implements OnInit {
 
     search(event:any)
     {
+      console.log(event)
       this.searchTerm = (event.target as HTMLInputElement).value;
       this.searching.next(this.searchTerm);
       return this.searchTerm;
     }
-  }
+
+
+}
 
