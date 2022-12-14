@@ -71,10 +71,26 @@ h1 {
   letter-spacing: 5px;
 }
 
+#smallHeaderText {
+  font-size: 1.2em;
+  font-weight: 100;
+  letter-spacing: 3px;
+}
+
 .header {
   width: 100%;
   padding:35px 0;
   text-align: center;
   background: #FE0944;
   color: white;
+}
+
+.disable:hover{
+  cursor: not-allowed;
+}
+.disable:active{
+  pointer-events: none;
+}
+mat-icon.disable {
+  filter:opacity(0.5);
 }
