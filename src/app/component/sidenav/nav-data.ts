@@ -26,6 +26,11 @@ export const navbarData = [
     routeLink: 'orderlist',
     icon: 'fas fa-credit-card',
     label: 'My orders'
+  },
+  {
+    routeLink: 'sendmail',
+    icon: 'fas fa-solid fa-envelope',
+    label: 'Send a mail to admin'
   }
 
 ];

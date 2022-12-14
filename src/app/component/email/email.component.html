@@ -1,1 +1,22 @@
-<p>email works!</p>
+<div class="container">
+  <form action="action_page.php">
+
+    <label for="email">Email</label>
+    <input [(ngModel)]="from" type="text" id="email" name="Email" placeholder="Your email is..">
+
+    <label for="subject">Subject</label>
+    <input [(ngModel)]="subject" type="text" id="Subject" name="subject" placeholder="Your subject matter is...">
+
+    <label for="country">Issue</label>
+    <select [(ngModel)]="issue" id="country" name="country">
+      <option value="Report a bug">Report a bug</option>
+      <option value="Report another customer on the website">Report another customer on the website</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="Message">Message</label>
+    <textarea [(ngModel)]="body" id="Message" name="Message" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input (click)="createEmail()" type="submit" value="Submit">
+  </form>
+</div>
