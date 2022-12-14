@@ -49,7 +49,7 @@ const routes: Routes = [
 
   {path: 'adminview', component: AdminviewComponent, canActivate: [RoleguardService]},
 
-  {path: 'sendmail', component: EmailComponent},
+  {path: 'sendmail', component: EmailComponent, canActivate: [AuthguardService]},
 
   {path: 'mainview', component: ProductListComponent, canActivate: [AuthguardService]},
 
