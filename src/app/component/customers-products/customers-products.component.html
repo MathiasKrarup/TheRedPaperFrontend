@@ -1,13 +1,14 @@
 <section class="header">
   <h1>Your products for sale</h1>
   <p id="headerText">View, update or delete ur products here!</p>
+  <p id="smallHeaderText">If the product is sold, you cannot edit or delete the product anymore</p>
 </section>
 
 <div class="container">
   <div class="row">
     <ng-container *ngFor="let item of currentItemsToShow">
       <div class="card col-md-3">
-        <img src="{{item.imageUrl}}" alt="">
+        <img src="{{item.imageUrl}}" [ngClass]="{'disable':item.isSold == true}" alt="">
         <p><strong>Name:</strong> {{item.productName}}</p>
         <p><strong>Price:</strong> {{item.price}}</p>
         <p><strong>Description:</strong> {{item.description}}</p>
