@@ -54,10 +54,29 @@ export class DialogComponent implements OnInit {
   }
 
    async saveUser() {
-    const dto = await this.createDTO();
-    const row = await this.userService.updateUser(this.id, dto);
-    this.dialogRef.close(row)
-
+     if (!this.firstName){
+       alert("You need to write a first name for this user")
+     }
+     if (!this.lastName){
+       alert("You need to write a last name for this user")
+     }
+     if (!this.username){
+       alert("You need to write a username for this user")
+     }
+     if (!this.email){
+       alert("You need to write a email for this user")
+     }
+     if (!this.location){
+       alert("You need to write a location for this user")
+     }
+     if (!this.birthDay){
+       alert("You need to write a birthday for this user")
+     }
+     else {
+       const dto = await this.createDTO();
+       const row = await this.userService.updateUser(this.id, dto);
+       this.dialogRef.close(row)
+     }
     }
 
   close() {

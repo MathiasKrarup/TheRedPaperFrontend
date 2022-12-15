@@ -30,9 +30,14 @@ export class EditPasswordComponent implements OnInit {
   }
 
   async savePassword() {
-    const dto = await this.createDTO();
-    const row = await this.service.updatePassword(this.id, dto);
-    this.dialogRef.close(row)
+    if (!this.password){
+      alert("You need to give this user a new password")
+    }
+    else {
+      const dto = await this.createDTO();
+      const row = await this.service.updatePassword(this.id, dto);
+      this.dialogRef.close(row)
+    }
   }
 
   async createDTO() {
