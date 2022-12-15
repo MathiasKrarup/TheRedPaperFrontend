@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
       }
       }
     }
-  }
+
 
   /**
    * Creates/Register a new user with the role customer
@@ -116,5 +116,6 @@ export class LoginComponent implements OnInit {
       alert("You succesfully created a new account");
     }
   }
-
 }
+
+
