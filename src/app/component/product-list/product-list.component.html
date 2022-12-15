@@ -69,15 +69,15 @@
       <div class="card col-md-3">
         <img src="{{item.imageUrl}}" alt="" (click)="openDialog(item)">
         <p><strong>Product name: </strong>{{item.productName}} </p>
-        <p><strong>Price:</strong> {{item.price}}kr.</p>
+        <p><strong>Price:</strong> {{item.price}}$.</p>
         <p><strong>Description:</strong>{{item.description}}</p>
         <button id="addBtn" type="button" (click)="addToCart(item)">Add to cart</button>
       </div>
     </ng-container>
     <mat-paginator class="mat-elevation-z8"
-                   [length]="15"
-                   [pageSize]="6"
-                   [pageSizeOptions]="[3, 6, 9]"
+                   [length]="50"
+                   [pageSize]="3"
+                   [pageSizeOptions]="[3]"
                    (page)="onPageChange($event)"
     ></mat-paginator>
   </div>
