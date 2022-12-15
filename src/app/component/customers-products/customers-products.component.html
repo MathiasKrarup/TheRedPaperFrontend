@@ -10,7 +10,7 @@
       <div class="card col-md-3">
         <img src="{{item.imageUrl}}" [ngClass]="{'disable':item.isSold == true}" alt="">
         <p><strong>Name:</strong> {{item.productName}}</p>
-        <p><strong>Price:</strong> {{item.price}}</p>
+        <p><strong>Price:</strong> {{item.price}} $</p>
         <p><strong>Description:</strong> {{item.description}}</p>
         <p>
         <mat-icon id="edit" (click)="openEditProduct(item)" [ngClass]="{'disable':item.isSold == true}" >edit</mat-icon>

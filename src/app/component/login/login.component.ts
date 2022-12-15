@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', token)
       let decodedToken = jwtDecode(token) as Token;
       if (decodedToken.role == 'Admin') {
-        this.router.navigate(['/adminview']);
+        this.router.navigate(['/mainview']);
       } else if (decodedToken.role == 'Customer') {
         this.router.navigate(['/mainview']);
       }else if (decodedToken.role != 'Admin' || 'Customer'){
