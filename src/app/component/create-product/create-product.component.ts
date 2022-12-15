@@ -49,24 +49,42 @@ export class CreateProductComponent implements OnInit {
   }
 
   async createProduct() {
-    let token = localStorage.getItem('token');
-    if (!token)
-      return console.log("There was no matching token found")
-
-    let decodedToken = jwtDecode(token) as Token;
-
-
-    let dto = {
-      userId: decodedToken.id,
-      productName: this.productName,
-      imageUrl: this.imageUrl,
-      price: this.price,
-      productCondition: this.condition,
-      description: this.description,
-      subCategoryId: this.currentsubCategory,
-      productConditionId: this.condition,
+    if (!this.condition){
+      alert("Please choose the condition of your product")
     }
-    const result = await this.service.createProduct(dto);
+    if (!this.productName){
+      alert("Please give your product a name")
+    }
+    if (!this.currentsubCategory){
+      alert("Please select a subcategory to your product")
+    }
+    if (!this.price){
+      alert("Please choose a price for your product")
+    }
+    if (!this.description){
+      alert("Please give your product a description")
+    }
+    if (!this.imageUrl){
+      alert("Please write a imageUrl to your product")
+    }
+    else {
+      let token = localStorage.getItem('token');
+      if (!token)
+        return console.log("There was no matching token found")
+
+      let decodedToken = jwtDecode(token) as Token;
+      let dto = {
+        userId: decodedToken.id,
+        productName: this.productName,
+        imageUrl: this.imageUrl,
+        price: this.price,
+        productCondition: this.condition,
+        description: this.description,
+        subCategoryId: this.currentsubCategory,
+        productConditionId: this.condition,
+      }
+      const result = await this.service.createProduct(dto);
       await this.router.navigateByUrl('/mainview');
+    }
     }
 }
