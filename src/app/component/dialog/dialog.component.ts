@@ -70,7 +70,7 @@ export class DialogComponent implements OnInit {
        alert("You need to write a location for this user")
      }
      if (!this.birthDay){
-       alert("You need to write a birthday for this user")
+       alert("You need to write a birthday for this user ")
      }
      else {
        const dto = await this.createDTO();
