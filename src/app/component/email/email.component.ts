@@ -18,17 +18,31 @@ export class EmailComponent implements OnInit {
   }
 
   async createEmail(){
-    let dto = {
-      from: this.from,
-      subject: this.subject,
-      issue: this.issue,
-      body: this.body
+    if (!this.from){
+      alert("Please write your email, so we can contact you back")
     }
-    await this.service.createEmail(dto);
-    alert("Email is succesfully sent!")
-    this.from = ""
-    this.subject = ""
-    this.issue = ""
-    this.body = ""
+    if (!this.subject){
+      alert("Please write the subject this email is handling")
+    }
+    if (!this.issue){
+      alert("Please select the issue this email is regarding")
+    }
+    if (!this.body){
+      alert("Please write a message")
+    }
+    else {
+      let dto = {
+        from: this.from,
+        subject: this.subject,
+        issue: this.issue,
+        body: this.body
+      }
+      await this.service.createEmail(dto);
+      alert("Email is succesfully sent!")
+      this.from = ""
+      this.subject = ""
+      this.issue = ""
+      this.body = ""
+    }
   }
 }
