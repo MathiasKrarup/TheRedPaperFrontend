@@ -41,7 +41,12 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+  /**
+   * Logs the user into the program and sets the token which is used in other routes of the program,
+   * if the user logs in succesfully. After the token is sat the decoced token is used to check the user's role.
+   * If the user is an admin, then they're navigated to the adminview and if the role is Customer, then they're
+   * navigated to the mainview. If no role is found then they're navigated to /login.
+    */
   async login() {
     let dto = {
       username: this.username,
@@ -51,14 +56,17 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', token)
       let decodedToken = jwtDecode(token) as Token;
       if (decodedToken.role == 'Admin') {
-        this.router.navigate(['/mainview']);
+        this.router.navigate(['/adminview']);
       } else if (decodedToken.role == 'Customer') {
-        this.router.navigate(['/createSales']);
+        this.router.navigate(['/mainview']);
       }else if (decodedToken.role != 'Admin' || 'Customer'){
         this.router.navigate(['/login'])
       }
   }
 
+  /**
+   * Creates/Register a new user with the role customer
+   */
   async createCustomer() {
     let dto = {
       firstName: this.firstName,
@@ -71,6 +79,6 @@ export class LoginComponent implements OnInit {
       location: this.location
     }
     const result = await this.http.createCustomer(dto);
-    alert("You succesfully created a new account");
+      alert("You succesfully created a new account");
   }
 }

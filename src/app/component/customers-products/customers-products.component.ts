@@ -35,7 +35,7 @@ export class CustomersProductsComponent implements OnInit {
     let decodedToken = jwtDecode(token) as Token;
 
     this.productList = await this.http.getProductsFromUser(decodedToken.id);
-    this.currentItemsToShow = this.productList.slice(0,6);
+    this.currentItemsToShow = this.productList.slice(0,3);
   }
 
   openEditProduct(item: any) {
