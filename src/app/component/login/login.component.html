@@ -11,7 +11,7 @@
       <div class="usernameandemail">
         <input [(ngModel)]="username" type="text" placeholder="Username"
                [ngModelOptions]="{standalone: true}"/>
-        <input [(ngModel)]="email" type="email" placeholder="Email" class="right"
+        <input [(ngModel)]="email" type="email" placeholder="Email" [email] = "true" class="right"
                [ngModelOptions]="{standalone: true}"/>
       </div>
       <div class="phoneandbirthday">

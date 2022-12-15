@@ -5,6 +5,7 @@ import {AuthService} from "../../../services/auth.service";
 import jwtDecode from "jwt-decode";
 
 
+
 class Token {
   role?: string;
   id?: string;
@@ -32,7 +33,6 @@ export class LoginComponent implements OnInit {
   birthDay: any;
   location: any;
 
-
   ngOnInit(): void {
   }
 
@@ -48,7 +48,14 @@ export class LoginComponent implements OnInit {
    * navigated to the mainview. If no role is found then they're navigated to /login.
     */
   async login() {
-    let dto = {
+    if (!this.username) {
+      alert("Remember to enter your username")
+    }
+    else if (!this.password){
+      alert("Remember to enter your password")
+    }
+    else {
+      let dto = {
       username: this.username,
       password: this.password
     }
@@ -62,23 +69,52 @@ export class LoginComponent implements OnInit {
       }else if (decodedToken.role != 'Admin' || 'Customer'){
         this.router.navigate(['/login'])
       }
+      }
+    }
   }
 
   /**
    * Creates/Register a new user with the role customer
    */
   async createCustomer() {
-    let dto = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      username: this.username,
-      password: this.password,
-      birthDay: this.birthDay,
-      email: this.email,
-      phoneNumber: this.phoneNumber,
-      location: this.location
+    if (!this.firstName){
+      alert("Remember to enter your first name")
     }
-    const result = await this.http.createCustomer(dto);
+    else if(!this.lastName){
+      alert("Remember to enter your last name")
+    }
+    else if (!this.username){
+      alert("Remember to enter your username")
+    }
+    else if (!this.password){
+      alert("Remember to enter your password")
+    }
+    else if (!this.birthDay){
+      alert("Remember to enter your birthday")
+    }
+    else if (!this.email){
+      alert("Remember to enter your email")
+    }
+    else if (!this.phoneNumber || this.phoneNumber.length < 8){
+      alert("Remember to either type your phoneNumber. A phoneNumber has to be atleast 8 numbers")
+    }
+    else if (!this.location){
+      alert("Remember to type your location")
+    }
+    else {
+      let dto = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        username: this.username,
+        password: this.password,
+        birthDay: this.birthDay,
+        email: this.email,
+        phoneNumber: this.phoneNumber,
+        location: this.location
+      }
+      const result = await this.http.createCustomer(dto);
       alert("You succesfully created a new account");
+    }
   }
+
 }

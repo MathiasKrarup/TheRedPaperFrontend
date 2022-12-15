@@ -4,7 +4,7 @@
   [searchKeyword]= "keyword"
   placeholder="Enter the Product name"
   (keyup)="search($event)"
-  (click)="search($event)"
+  (selected)="selectedItem($event)"
   historyIdentifier="products"
   [itemTemplate]="itemTemplate"
   [notFoundTemplate]="notFoundTemplate">
