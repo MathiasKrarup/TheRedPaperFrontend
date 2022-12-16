@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), MatTableModule, MatPaginatorModule, MatSortModule],
+  imports: [RouterModule.forRoot(routes, {useHash: true}), MatTableModule, MatPaginatorModule, MatSortModule],
 
   exports: [RouterModule]
 })
