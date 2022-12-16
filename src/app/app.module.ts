@@ -39,6 +39,7 @@ import { FilterPipe } from './component/PipeFilter/filter.pipe';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { EmailComponent } from './component/email/email.component';
 import { EditPasswordComponent } from './component/edit-password/edit-password.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -111,7 +112,7 @@ const routes: Routes = [
 
 
   exports: [MatTableModule],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
