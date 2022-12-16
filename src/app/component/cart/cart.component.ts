@@ -8,7 +8,7 @@ import {Token} from "../../../Interfaces/token";
 import {OrderService} from "../../../services/order.service";
 
 export const customAxios = axios.create({
-  baseURL: 'https://localhost:7175',
+  baseURL: 'https://theredpaper.azurewebsites.net',
   headers: {
 
   }
