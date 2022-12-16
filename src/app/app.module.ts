@@ -82,7 +82,7 @@ const routes: Routes = [
     EditPasswordComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash:true}),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
