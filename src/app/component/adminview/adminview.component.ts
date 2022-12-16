@@ -13,7 +13,7 @@ import axios from "axios";
 import {EditPasswordComponent} from "../edit-password/edit-password.component";
 
 export const customAxios = axios.create({
-  baseURL: 'https://localhost:7175',
+  baseURL: 'https://theredpaper.azurewebsites.net',
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`
   }

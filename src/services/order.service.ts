@@ -18,6 +18,6 @@ export class OrderService {
 
   // Method used to get all orders from a specific user
   getAllOrdersFromUser(userId: any): Observable<any> {
-    return this.httpClient.get('https://localhost:7175/Order/GetAllOrdersFromUser/' + userId);
+    return this.httpClient.get('https://theredpaper.azurewebsites.net/Order/GetAllOrdersFromUser/' + userId);
   }
 }
