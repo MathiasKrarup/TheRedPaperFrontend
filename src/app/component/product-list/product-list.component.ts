@@ -37,6 +37,8 @@ export class ProductListComponent implements OnInit {
   }
 
   async ngOnInit() {
+    localStorage.getItem('token')
+    console.log(localStorage.getItem('token'))
     this.productList = await this.http.getAllProducts();
     this.loadCategories()
 
