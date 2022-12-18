@@ -23,7 +23,6 @@ export class ProductListComponent implements OnInit {
   selectedCategory!: string;
 
   selectedSubCategory!: string;
-  currentItemsToShow = [];
 
 
   searchKey: string = "";
@@ -41,9 +40,6 @@ export class ProductListComponent implements OnInit {
     console.log(localStorage.getItem('token'))
     this.productList = await this.http.getAllProducts();
     this.loadCategories()
-
-    this.currentItemsToShow = this.productList.slice(0, 3)
-
     this.productList.forEach((a: any) => {
       Object.assign(a, {quantity: 1, total: a.price});
     })
@@ -79,38 +75,32 @@ export class ProductListComponent implements OnInit {
   OnSubCategorySelected(selectedSubId: any) {
     this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
       this.productList = data
-      this.currentItemsToShow = this.productList
     })
 
   }
 
   async sortingDefault() {
     this.productList = await this.http.getAllProducts();
-    this.currentItemsToShow = this.productList.slice(0, 3)
     this.sortby = 'default';
   }
 
   async sortingByHighToLow() {
     this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
-    this.currentItemsToShow = this.productList.slice(0, 3)
     this.sortby = 'htl';
   }
 
   async sortingByLowToHigh() {
     this.productList.sort((a, b) => (a.price < b.price ? -1 : 1));
-    this.currentItemsToShow = this.productList.slice(0, 3)
     this.sortby = 'lth';
   }
 
   async sortingByAToZ() {
     this.productList.sort((a, b) => (a.productName < b.productName ? -1 : 1));
-    this.currentItemsToShow = this.productList.slice(0, 3)
     this.sortby = 'atz';
   }
 
   async sortingByZToA() {
     this.productList.sort((a, b) => (a.productName > b.productName ? -1 : 1));
-    this.currentItemsToShow = this.productList.slice(0, 3)
     this.sortby = 'zta';
   }
 
@@ -131,11 +121,6 @@ export class ProductListComponent implements OnInit {
     this.cartService.addToCart(item);
   }
 
-  onPageChange($event) {
-    this.currentItemsToShow = this.productList.slice($event.pageIndex * $event.pageSize,
-      $event.pageIndex * $event.pageSize + $event.pageSize);
-  }
-
     search(event:any)
     {
       this.searchTerm = (event.target as HTMLInputElement).value;
@@ -150,7 +135,6 @@ export class ProductListComponent implements OnInit {
     this.searching.next(this.searchTerm);
     return this.searchTerm;
   }
-
 
 }
 
