@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import axios from 'axios';
 import {Observable} from "rxjs";
 import {Category} from "../Interfaces/category";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 export const customAxios = axios.create({
   baseURL: 'https://theredpaper.azurewebsites.net',
   headers: {
-
+    Authorization: `Bearer ${localStorage.getItem('token')}`
   }
 })
 
@@ -28,7 +28,11 @@ export class ProductService {
 
   // Method used to get the Categories as Observable
    getCategoriesObservable(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>('https://theredpaper.azurewebsites.net/Category');
+     const reqHeaders = new HttpHeaders({
+       'Content-Type': 'application/json',
+       'Authorization': 'Bearer ' + (localStorage.getItem('token'))
+     })
+    return this.httpClient.get<Category[]>('https://theredpaper.azurewebsites.net/Category', {headers: reqHeaders});
   }
 
   // Method used to get the categories
@@ -39,7 +43,11 @@ export class ProductService {
 
   // Method used to get the subcategories from specific category
   getSubCategoriesFromCategory(selectedCategoryId: string): Observable<any>{
-    return this.httpClient.get(  'https://theredpaper.azurewebsites.net/SubCategory/GetAllSubsFromCategories/'+selectedCategoryId)
+    const reqHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + (localStorage.getItem('token'))
+    })
+    return this.httpClient.get(  'https://theredpaper.azurewebsites.net/SubCategory/GetAllSubsFromCategories/'+selectedCategoryId, {headers: reqHeaders})
   }
 
   // Method used to get the subcategories
@@ -68,7 +76,11 @@ export class ProductService {
 
   // Method used to get all products from specific subcategory id
   getAllProductsFromSubId(selectedSubId: string): Observable<any>{
-    return this.httpClient.get('https://theredpaper.azurewebsites.net/Product/GetAllProductsFromSub/' + selectedSubId);
+    const reqHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + (localStorage.getItem('token'))
+    })
+    return this.httpClient.get('https://theredpaper.azurewebsites.net/Product/GetAllProductsFromSub/' + selectedSubId, {headers: reqHeaders});
   }
 
   // Method to get a specific user's products
@@ -116,6 +128,10 @@ export class ProductService {
 
   // Method used to get the products from a specific orderId
    getAllProductsByOrderId(orderId: number): Observable<any>{
-    return this.httpClient.get('https://theredpaper.azurewebsites.net/Product/GetAllProductsByOrderId/' + orderId);
+     const reqHeaders = new HttpHeaders({
+       'Content-Type': 'application/json',
+       'Authorization': 'Bearer ' + (localStorage.getItem('token'))
+     })
+    return this.httpClient.get('https://theredpaper.azurewebsites.net/Product/GetAllProductsByOrderId/' + orderId, {headers: reqHeaders});
   }
 }

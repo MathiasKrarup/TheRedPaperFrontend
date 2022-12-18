@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {customAxios} from "../app/component/cart/cart.component";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import axios from 'axios';
+
+export const customAxios = axios.create({
+  baseURL: 'https://theredpaper.azurewebsites.net',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+})
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +25,10 @@ export class OrderService {
 
   // Method used to get all orders from a specific user
   getAllOrdersFromUser(userId: any): Observable<any> {
-    return this.httpClient.get('https://theredpaper.azurewebsites.net/Order/GetAllOrdersFromUser/' + userId);
+    const reqHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + (localStorage.getItem('token'))
+    })
+    return this.httpClient.get('https://theredpaper.azurewebsites.net/Order/GetAllOrdersFromUser/' + userId, {headers: reqHeaders});
   }
 }

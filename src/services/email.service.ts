@@ -1,6 +1,12 @@
 import {Injectable} from "@angular/core";
-import {customAxios} from "../app/component/cart/cart.component";
+import axios from 'axios';
 
+export const customAxios = axios.create({
+  baseURL: 'https://theredpaper.azurewebsites.net',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+})
 
 @Injectable({
   providedIn: 'root'
