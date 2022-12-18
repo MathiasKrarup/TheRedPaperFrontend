@@ -15,7 +15,7 @@ import {EditPasswordComponent} from "../edit-password/edit-password.component";
 export const customAxios = axios.create({
   baseURL: 'https://localhost:7175',
   headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`
+    Authorization: `bearer ${localStorage.getItem('token')}`
   }
 })
 @Component({
