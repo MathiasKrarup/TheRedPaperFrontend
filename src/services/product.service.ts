@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 export const customAxios = axios.create({
   baseURL: 'https://theredpaper.azurewebsites.net',
   headers: {
-
+    Authorization: `Bearer ${localStorage.getItem('token')}`
   }
 })
 
