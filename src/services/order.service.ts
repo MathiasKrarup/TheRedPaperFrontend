@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {customAxios} from "../app/component/cart/cart.component";
+import axios from "axios";
+
+export const customAxios = axios.create({
+  baseURL: 'https://localhost:7175',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+})
 
 @Injectable({
   providedIn: 'root'
