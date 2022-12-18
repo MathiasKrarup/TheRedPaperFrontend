@@ -7,12 +7,6 @@ import jwtDecode from "jwt-decode";
 import {Token} from "../../../Interfaces/token";
 import {OrderService} from "../../../services/order.service";
 
-export const customAxios = axios.create({
-  baseURL: 'https://localhost:7175',
-  headers: {
-
-  }
-})
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
