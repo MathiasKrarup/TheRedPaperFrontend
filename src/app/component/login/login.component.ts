@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 // @ts-ignore
 import jwtDecode from "jwt-decode";
+import {reload} from "../../../services/axios";
 
 
 
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
     }
       var token = await this.http.login(dto)
       localStorage.setItem('token', token)
+      reload();
       let decodedToken = jwtDecode(token) as Token;
       if (decodedToken.role == 'Admin') {
         this.router.navigate(['/mainview']);

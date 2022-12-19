@@ -3,13 +3,7 @@ import axios from 'axios';
 import {Observable} from "rxjs";
 import {Category} from "../Interfaces/category";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-
-export const customAxios = axios.create({
-  baseURL: 'https://theredpaper.azurewebsites.net',
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  }
-})
+import {customAxios} from "./axios";
 
 
 @Injectable({
