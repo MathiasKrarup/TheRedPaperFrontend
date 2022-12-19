@@ -62,11 +62,15 @@ export class LoginComponent implements OnInit {
     var token = await this.http.login(dto)
       localStorage.setItem('token', token)
       let decodedToken = jwtDecode(token) as Token;
-      if (decodedToken.role == 'Admin' || 'Customer') {
+      if (decodedToken.role == 'Admin') {
         this.router.navigate(['/mainview']);
-      } else if (decodedToken.role != 'Admin' || 'Customer'){
-        this.router.navigate(['/login'])
+      }
+      if (decodedToken.role == 'Customer'){
+        this.router.navigate(['/mainview']);
+      }
+      if (decodedToken.role != 'Admin' || 'Customer'){
         alert("Wrong username or password")
+        this.router.navigate(['/login'])
       }
       }
     }
