@@ -1,13 +1,6 @@
 import {Injectable} from "@angular/core";
-import axios from 'axios';
+import {customAxios} from "./axios";
 
-
-export const customAxios = axios.create({
-  baseURL: 'https://localhost:7175',
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  }
-})
 @Injectable({
   providedIn: 'root'
 })

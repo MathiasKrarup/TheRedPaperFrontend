@@ -4,13 +4,7 @@ import {Observable} from "rxjs";
 import {Category} from "../Interfaces/category";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import * as http from "http";
-
-export const customAxios = axios.create({
-  baseURL: 'https://localhost:7175',
-  headers: {
-    Authorization: `bearer ${localStorage.getItem('token')}`
-  }
-})
+import {customAxios} from "./axios";
 
 @Injectable({
   providedIn: 'root'
@@ -102,30 +96,6 @@ export class ProductService {
     const httpResult = await customAxios.delete('https://localhost:7175/Product/'+id);
     return httpResult.data;
  }
-
-  // Method used to sort the price from High to Low
-  async sortingByHighToLow(){
-    const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceHighToLow');
-    return httpResult.data;
-  }
-
-  // Method used to sort the price from low to high
-  async sortingByLowToHigh(){
-    const httpResult = await customAxios.get<any>('/GetAllProductsFromPriceLowToHigh');
-    return httpResult.data;
-  }
-
-  // Method used to sort the products alphabetical from A-Z
-  async sortingByAToZ(){
-    const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingA-Z');
-    return httpResult.data;
-  }
-
-  // Method used to sort the products alphabetical from Z-A
-  async sortingByZToA(){
-    const httpResult = await customAxios.get<any>('/GetAllProductsAlphabetSortingZ-A');
-    return httpResult.data;
-  }
 
   // Method used to get the products from a specific orderId
    getAllProductsByOrderId(orderId: number): Observable<any>{
