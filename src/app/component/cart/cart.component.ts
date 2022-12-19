@@ -35,7 +35,6 @@ export class CartComponent implements OnInit {
   }
   async createOrder() {
     let token = localStorage.getItem('token');
-    console.log(token)
     if (!token)
       return console.log("There was no matching token found")
 

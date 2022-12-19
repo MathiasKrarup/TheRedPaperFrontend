@@ -60,7 +60,6 @@ export class ProductListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog closed");
       if (result != null) {
         this.productList[this.productList.findIndex(item => item.id == result.id)] = result;
       }
@@ -130,7 +129,6 @@ export class ProductListComponent implements OnInit {
   selectedItem(item:any)
   {
     this.searchTerm = item.productName;
-    console.log(this.searchTerm)
     this.searching.next(this.searchTerm);
     return this.searchTerm;
   }
