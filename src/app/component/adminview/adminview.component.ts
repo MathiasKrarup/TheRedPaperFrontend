@@ -39,10 +39,6 @@ export class AdminviewComponent implements AfterViewInit, OnInit {
   constructor(private service: userService, private dialog: MatDialog) {
   }
 
-  async ngOnInit() {
-    localStorage.getItem('token');
-  }
-
 
   async ngAfterViewInit() {
     localStorage.getItem('token');
