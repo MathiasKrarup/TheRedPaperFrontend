@@ -42,10 +42,8 @@ export class AdminviewComponent implements AfterViewInit {
 
   async ngAfterViewInit() {
     localStorage.getItem('token');
-    console.log(    localStorage.getItem('token'))
     const users: Users[] = await this.service.getUsers();
     this.dataSource = new MatTableDataSource(users);
-    console.log(users)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

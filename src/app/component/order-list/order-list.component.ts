@@ -40,7 +40,6 @@ export class OrderListComponent implements AfterViewInit{
 
   private loadOrders() {
    let token = localStorage.getItem('token');
-    console.log(token)
     if (!token)
      return console.log("There was no matching token found")
 
