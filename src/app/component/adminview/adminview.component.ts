@@ -25,7 +25,7 @@ export const customAxios = axios.create({
 })
 
 
-export class AdminviewComponent implements AfterViewInit, OnInit {
+export class AdminviewComponent implements AfterViewInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'action'];
   dataSource: MatTableDataSource<Users>;
 
