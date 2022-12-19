@@ -38,10 +38,8 @@ export class SidenavComponent implements OnInit {
         // @ts-ignore
         this.currentRoute = event.url;
         // @ts-ignore
-        console.log(event.url);
       }
     });
-    console.log(this.currentRoute)
   }
 
   ngOnInit(): void {
