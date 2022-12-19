@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export let customAxios = axios.create({
-  baseURL: 'https://localhost:7175',
+  baseURL: 'https://theredpaper.azurewebsites.net',
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`
   }
@@ -9,7 +9,7 @@ export let customAxios = axios.create({
 
 export function reload(){
   customAxios = axios.create({
-    baseURL: 'https://localhost:7175',
+    baseURL: 'https://theredpaper.azurewebsites.net',
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
