@@ -7,7 +7,7 @@ import jwtDecode from "jwt-decode";
 
 
 class Token {
-  assignedRole?: string;
+  role?: string;
   id?: string;
 }
 
@@ -62,11 +62,11 @@ export class LoginComponent implements OnInit {
       var token = await this.http.login(dto)
       localStorage.setItem('token', token)
       let decodedToken = jwtDecode(token) as Token;
-      if (decodedToken.assignedRole == 'Admin') {
+      if (decodedToken.role == 'Admin') {
         this.router.navigate(['/mainview']);
-      } else if (decodedToken.assignedRole == 'Customer') {
+      } else if (decodedToken.role == 'Customer') {
         this.router.navigate(['/mainview']);
-      }else if (decodedToken.assignedRole != 'Admin' || 'Customer'){
+      }else if (decodedToken.role != 'Admin' || 'Customer'){
         this.router.navigate(['/login'])
       }
       }
