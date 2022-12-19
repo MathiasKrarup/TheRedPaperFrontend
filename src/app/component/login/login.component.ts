@@ -65,12 +65,12 @@ export class LoginComponent implements OnInit {
       if (decodedToken.role == 'Admin') {
         this.router.navigate(['/mainview']);
       }
-      if (decodedToken.role == 'Customer'){
+      else if (decodedToken.role == 'Customer'){
         this.router.navigate(['/mainview']);
       }
-      if (decodedToken.role != 'Admin' || 'Customer'){
+      else if (decodedToken.role != 'Admin' || 'Customer'){
         alert("Wrong username or password")
-        this.router.navigate(['/login'])
+        await this.router.navigate(['/login'])
       }
       }
     }
