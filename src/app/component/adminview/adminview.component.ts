@@ -25,7 +25,7 @@ export const customAxios = axios.create({
 })
 
 
-export class AdminviewComponent implements AfterViewInit {
+export class AdminviewComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'action'];
   dataSource: MatTableDataSource<Users>;
 
@@ -39,6 +39,11 @@ export class AdminviewComponent implements AfterViewInit {
   constructor(private service: userService, private dialog: MatDialog) {
   }
 
+  async ngOnInit() {
+    localStorage.getItem('token');
+  }
+
+
   async ngAfterViewInit() {
     localStorage.getItem('token');
     console.log(    localStorage.getItem('token'))
@@ -48,7 +53,6 @@ export class AdminviewComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
