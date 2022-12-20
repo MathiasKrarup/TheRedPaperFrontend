@@ -46,16 +46,19 @@ export class SidenavComponent implements OnInit {
     this.screenWidth = window.innerWidth;
   }
 
+  //This method displays the animation when the sidenav collapses
   toggleCollapse(): void {
     this.collapsed = !this.collapsed;
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
 
+  //This method closes the sidenav
   closeSidenav(): void {
     this.collapsed = false
     this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
   }
 
+  //This method the user logs out
   LogOut() {
     this.router.navigate(['/login']).then(() =>{
       alert("You're now logged out")

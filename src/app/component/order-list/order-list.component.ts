@@ -30,6 +30,7 @@ export class OrderListComponent implements AfterViewInit{
     this.loadOrders()
   }
 
+  //This method selects an order
   onOrderSelected(selectedOrderId: any){
     this.productservice.getAllProductsByOrderId(selectedOrderId).subscribe(data => {
       this.productList = data

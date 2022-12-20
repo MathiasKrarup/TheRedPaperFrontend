@@ -53,6 +53,7 @@ export class DialogComponent implements OnInit {
 
   }
 
+  //This method edits an user
    async saveUser() {
      if (!this.firstName){
        alert("You need to write a first name for this user")
@@ -79,10 +80,12 @@ export class DialogComponent implements OnInit {
      }
     }
 
+    //This method closes the dialog box
   close() {
     this.dialogRef.close();
   }
 
+  //This method creates a dto
     async createDTO() {
     let dto = {
       id: this.id,
