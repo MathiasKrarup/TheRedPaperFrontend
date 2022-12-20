@@ -48,6 +48,7 @@ export class CreateProductComponent implements OnInit {
     return this.infoForm.get('category');
   }
 
+  // This method creates a product
   async createProduct() {
     if (!this.condition){
       alert("Please choose the condition of your product")

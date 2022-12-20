@@ -25,10 +25,12 @@ export class EditPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //This method closes the dialog box
   close() {
     this.dialogRef.close();
   }
 
+  //This method saves an updated password
   async savePassword() {
     if (!this.password){
       alert("You need to give this user a new password")
@@ -40,6 +42,7 @@ export class EditPasswordComponent implements OnInit {
     }
   }
 
+  //This method creates a DTO
   async createDTO() {
     let dto = {
       id: this.id,

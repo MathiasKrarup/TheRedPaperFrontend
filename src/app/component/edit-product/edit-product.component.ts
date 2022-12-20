@@ -36,16 +36,19 @@ export class EditProductComponent implements OnInit {
 
 
 
+  //This method updates the product
   async updateProduct() {
     const dto = await this.createDTO();
     const item = await this.productService.updateProduct(this.id, dto);
     this.dialogRef.close(item)
   }
 
+  //This method closes the dialog box
   close() {
     this.dialogRef.close();
   }
 
+  //This method creates the dto
   async createDTO() {
     let dto = {
       id: this.id,

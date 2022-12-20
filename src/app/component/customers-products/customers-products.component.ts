@@ -38,6 +38,7 @@ export class CustomersProductsComponent implements OnInit {
     this.currentItemsToShow = this.productList.slice(0,3);
   }
 
+  //This method opens editProduct component as a dialog
   openEditProduct(item: any) {
     let dialogRef = this.dialog.open(EditProductComponent, {
       data: {
@@ -52,12 +53,14 @@ export class CustomersProductsComponent implements OnInit {
     });
   }
 
+  //This method deletes a product
   async deleteProduct(id) {
     const product = await this.http.deleteProduct(id);
     this.productList = this.productList.filter(item => item.id != product.id)
     await this.ngOnInit();
   }
 
+  //This method makes the pagnitator change page
   onPageChange($event) {
     this.currentItemsToShow = this.productList.slice($event.pageIndex*$event.pageSize,
       $event.pageIndex*$event.pageSize + $event.pageSize);

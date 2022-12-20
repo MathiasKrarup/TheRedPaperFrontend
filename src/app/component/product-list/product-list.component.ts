@@ -51,7 +51,7 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-
+  //This method opens the dialog box to product details
   openDialog(item: any) {
     let dialogRef = this.dialog.open(ProductDetailsComponent, {
       data: {
@@ -66,42 +66,48 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  //This method gets a product by Id
   getProductById(id: number) {
     this.http.getProductById(id);
   }
 
+  //This method shows all the products from the subcategory selected
   OnSubCategorySelected(selectedSubId: any) {
     this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
       this.productList = data
     })
 
   }
-
+  //This method shows the default list of products
   async sortingDefault() {
     this.productList = await this.http.getAllProducts();
     this.sortby = 'default';
   }
-
+  //This method sorts by High to Low on a given product depending on price
   async sortingByHighToLow() {
     this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
     this.sortby = 'htl';
   }
+  //This method sorts by low to high on a given product depending on price
 
   async sortingByLowToHigh() {
     this.productList.sort((a, b) => (a.price < b.price ? -1 : 1));
     this.sortby = 'lth';
   }
 
+  //This method sorts by A to Z on a given product depending on productName
   async sortingByAToZ() {
     this.productList.sort((a, b) => (a.productName < b.productName ? -1 : 1));
     this.sortby = 'atz';
   }
 
+  //This method sorts by Z to A on a given product depending on productName
   async sortingByZToA() {
     this.productList.sort((a, b) => (a.productName > b.productName ? -1 : 1));
     this.sortby = 'zta';
   }
 
+  //This method loads the categories
   private loadCategories() {
     this.http.getCategoriesObservable().subscribe(data => {
       this.categorylist = data
@@ -109,16 +115,19 @@ export class ProductListComponent implements OnInit {
     })
   }
 
+  //This method shows the subcategories depending on the category selected
   onCategorySelected(selectedCategoryId: any) {
     this.http.getSubCategoriesFromCategory(selectedCategoryId).subscribe(data => {
       this.subCategorylist = data
     })
   }
 
+  //this method adds to cart
   addToCart(item: any) {
     this.cartService.addToCart(item);
   }
 
+  //This method searches for a product
     search(event:any)
     {
       this.searchTerm = (event.target as HTMLInputElement).value;
@@ -126,6 +135,7 @@ export class ProductListComponent implements OnInit {
       return this.searchTerm;
     }
 
+    //This method shows the selected item on the list, if it is chosen on the dropdown autocomplete bar
   selectedItem(item:any)
   {
     this.searchTerm = item.productName;
