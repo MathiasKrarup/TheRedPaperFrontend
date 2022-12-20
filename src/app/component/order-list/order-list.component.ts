@@ -29,7 +29,7 @@ export class OrderListComponent implements AfterViewInit{
   async ngAfterViewInit() {
     this.loadOrders()
   }
-
+  // This method selects an order
   onOrderSelected(selectedOrderId: any){
     this.productservice.getAllProductsByOrderId(selectedOrderId).subscribe(data => {
       this.productList = data
@@ -37,7 +37,7 @@ export class OrderListComponent implements AfterViewInit{
       this.dataSource.paginator = this.paginator;
     })
   }
-
+  // This method loads the orders
   private loadOrders() {
    let token = localStorage.getItem('token');
     if (!token)

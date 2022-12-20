@@ -28,7 +28,7 @@ export class BodyComponent implements OnInit {
   @Input() collapsed = false;
   @Input() screenWidth = 0;
 
-
+  // This method gets the bodyClass
   getBodyClass(): string {
     let styleClass = '';
     if (this.currentRoute == '/login' || this.currentRoute == '/') {

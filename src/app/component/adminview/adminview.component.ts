@@ -47,7 +47,7 @@ export class AdminviewComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-
+  // This method applies a filter to the searchbar
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -56,14 +56,14 @@ export class AdminviewComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
+  // This filter deletes an user
   async deleteUser(row: any) {
     if (confirm('Are you sure, that you want to delete ' + row.firstName + ' ' + row.lastName)) {
       const user = await this.service.deleteUser(row.id);
       this.dataSource.data = this.dataSource.data.filter(u => u.id != user.id);
     }
   }
-
+  // This method edits an user
   editUser(row: any) {
     const data = this.dialog.open(DialogComponent, {
       data: {
@@ -77,7 +77,7 @@ export class AdminviewComponent implements AfterViewInit {
       }
     });
   }
-
+  // This method updates an user's password
   updatePassword(row) {
     const data = this.dialog.open(EditPasswordComponent, {
       data: {
