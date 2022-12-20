@@ -52,7 +52,7 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+  // This method edits an user
    async saveUser() {
      if (!this.firstName){
        alert("You need to write a first name for this user")
@@ -78,11 +78,11 @@ export class DialogComponent implements OnInit {
        this.dialogRef.close(row)
      }
     }
-
+  // This method closes the dialog
   close() {
     this.dialogRef.close();
   }
-
+  // This method creates a dto
     async createDTO() {
     let dto = {
       id: this.id,

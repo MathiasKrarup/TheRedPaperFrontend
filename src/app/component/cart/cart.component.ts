@@ -25,14 +25,15 @@ export class CartComponent implements OnInit {
         this.grandTotal = this.cartService.getTotalPrice();
       })
   }
-
+  // This method removes an item
   removeItem(item: any) {
     this.cartService.removeCartItem(item);
   }
-
+  // This method empties the cart
   emptyCart() {
     this.cartService.removeAllCart();
   }
+  // This method creates an Order
   async createOrder() {
     let token = localStorage.getItem('token');
     if (!token)

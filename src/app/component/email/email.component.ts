@@ -16,7 +16,7 @@ export class EmailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  // This method creates an e-mail
   async createEmail(){
     if (!this.from){
       alert("Please write your email, so we can contact you back")

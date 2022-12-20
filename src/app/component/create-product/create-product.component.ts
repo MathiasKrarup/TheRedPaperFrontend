@@ -43,11 +43,10 @@ export class CreateProductComponent implements OnInit {
     this.conditionlist = await this.service.getConditions();
   }
 
-
   get category(): FormControl {
     return this.infoForm.get('category');
   }
-
+  // This method creates a product
   async createProduct() {
     if (!this.condition){
       alert("Please choose the condition of your product")

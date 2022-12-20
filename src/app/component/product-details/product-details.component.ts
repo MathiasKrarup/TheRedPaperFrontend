@@ -43,7 +43,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  // This method closes the dialog
   close(){
     this.dialogRef.close();
   }

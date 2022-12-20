@@ -51,7 +51,7 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-
+  // This method opens the ProductDetails component as a pop up dialog
   openDialog(item: any) {
     let dialogRef = this.dialog.open(ProductDetailsComponent, {
       data: {
@@ -65,67 +65,67 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
-
+  // This method gets the product by id
   getProductById(id: number) {
     this.http.getProductById(id);
   }
-
+  // This method shows all the products from the subcategory selected
   OnSubCategorySelected(selectedSubId: any) {
     this.http.getAllProductsFromSubId(selectedSubId).subscribe(data => {
       this.productList = data
     })
 
   }
-
+  // This method shows the default
   async sortingDefault() {
     this.productList = await this.http.getAllProducts();
     this.sortby = 'default';
   }
-
+  // This method sorts the price from high to low
   async sortingByHighToLow() {
     this.productList.sort((a, b) => (a.price > b.price ? -1 : 1));
     this.sortby = 'htl';
   }
-
+  // This method sorts the price from low to High
   async sortingByLowToHigh() {
     this.productList.sort((a, b) => (a.price < b.price ? -1 : 1));
     this.sortby = 'lth';
   }
-
+  // This method sorts the names from A - Z
   async sortingByAToZ() {
     this.productList.sort((a, b) => (a.productName < b.productName ? -1 : 1));
     this.sortby = 'atz';
   }
-
+  // This method sorts the names from Z - A
   async sortingByZToA() {
     this.productList.sort((a, b) => (a.productName > b.productName ? -1 : 1));
     this.sortby = 'zta';
   }
-
+  // This method loads the categories
   private loadCategories() {
     this.http.getCategoriesObservable().subscribe(data => {
       this.categorylist = data
 
     })
   }
-
+  // This method shows the category's subcategories
   onCategorySelected(selectedCategoryId: any) {
     this.http.getSubCategoriesFromCategory(selectedCategoryId).subscribe(data => {
       this.subCategorylist = data
     })
   }
-
+  // This method adds a product to the cart
   addToCart(item: any) {
     this.cartService.addToCart(item);
   }
-
+  // This method search by product
     search(event:any)
     {
       this.searchTerm = (event.target as HTMLInputElement).value;
       this.searching.next(this.searchTerm);
       return this.searchTerm;
     }
-
+  //This method shows the selected item on the list, if it is chosen on the dropdown autocomplete bar
   selectedItem(item:any)
   {
     this.searchTerm = item.productName;
